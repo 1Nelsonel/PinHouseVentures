@@ -12,7 +12,7 @@
         /* object-fit: cover !important; */
         display: grid !important;
     }
-    
+
 </style>
 
 <!--Page Title-->
@@ -83,113 +83,32 @@
             <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
                 <aside class="sidebar default-sidebar">
 
+                    
+
                     <!--search box-->
                     <div class="sidebar-widget sort-by">
-                        <select class="custom-select-box">
-                            <option>Sort By</option>
-                            <option>Residential</option>
-                            <option>Commercial</option>
-                            <option>Industrial</option>
-                            <option>Apartments</option>
-                        </select>
-                    </div>
-
-                    <!-- Categories -->
-                    <div class="sidebar-widget search-properties">
-                        <div class="sidebar-title"><h2>Search Properties</h2></div>
-                        <!-- Property Search Form -->
-                        <div class="property-search-form style-three">
-                            <form method="post" action="http://expert-themes.com/html/willies/index.html">
-                                <div class="row no-gutters">
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <select class="custom-select-box">
-                                            <option>Location</option>
-                                            <option>New York</option>
-                                            <option>Los Angeles</option>
-                                            <option>Chicago</option>
-                                            <option>Houston</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <select class="custom-select-box">
-                                            <option>Property Type</option>
-                                            <option>Residential</option>
-                                            <option>Commercial</option>
-                                            <option>Industrial</option>
-                                            <option>Apartments</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <select class="custom-select-box">
-                                            <option>Property Status</option>
-                                            <option>For Rent</option>
-                                            <option>For Sale</option>
-                                        </select>
-                                    </div>
-
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <select class="custom-select-box">
-                                            <option>Any Bedrooms</option>
-                                            <option>01 Bedroom</option>
-                                            <option>02 Bedrooms</option>
-                                            <option>03 Bedrooms</option>
-                                            <option>04 Bedrooms</option>
-                                            <option>05 Bedrooms</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <select class="custom-select-box">
-                                            <option>Any Bathrooms</option>
-                                            <option>01 Bathroom</option>
-                                            <option>02 Bathrooms</option>
-                                            <option>03 Bathrooms</option>
-                                            <option>04 Bathrooms</option>
-                                            <option>05 Bathrooms</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <div class="range-slider-one clearfix">
-                                            <label>Price Filter</label>
-                                            <div class="price-range-slider"></div>
-                                            <div class="input"><input type="text" class="price-amount" name="field-name" readonly></div>
-                                            <div class="title">US Doller</div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- Form Group -->
-                                    <div class="form-group">
-                                        <button type="submit" class="theme-btn btn-style-one">Search</button>
-                                    </div>
+                        <div class="sidebar-title mb-2">
+                            <h2>Search blog here</h2>
+                        </div>
+                        <div class="form-container">
+                            <form  method="GET" action="{% url 'blogs' %}">
+                                <div class="form-group">
+                                    <input class="form-control p-3" type="text" name="q" value="" placeholder="Search Blog Here" required>
+                                    <!-- <button type="submit" class="search-btn"><span class="la la-search"></span></button> -->
                                 </div>
                             </form>
                         </div>
-                        <!-- End Form -->
                     </div>
 
-                     <!-- Categories -->
+                    <!-- Categories -->
                     <div class="sidebar-widget categories">
                         <div class="sidebar-title"><h2>Category Properties</h2></div>
                         <ul class="cat-list">
-                            <li><a href="#">Apartments <span>22</span></a></li>
-                            <li><a href="#">Villas <span>45</span></a></li>
-                            <li><a href="#">Open Houses <span>62</span></a></li>
-                            <li><a href="#">Offices <span>70</span></a></li>
-                            <li><a href="#">Residentals <span>90</span></a></li>
-                            <li><a href="#">Co-Working <span>65</span></a></li>
-                            <li><a href="#">Flat <span>48</span></a></li>
-                            <li><a href="#">Cottage <span>24</span></a></li>
+                            <li><a href="{% url 'listings' %}">All<span>{{categories.count}}</span></a></li>
+                            {% for category in categories %}
+                            <li><a href="{% url 'listings' %}?q={{category.name}}">{{category.name}}<span>{{category.property_set.all.count}}</span></a></li>
+                            {% endfor %}
+                           
                         </ul>
                     </div>
 
@@ -197,57 +116,20 @@
                     <div class="sidebar-widget recent-properties">
                         <div class="sidebar-title"><h2>Recent Properties</h2></div>
                         <div class="widget-content">
-                            <!-- Post -->
+                            <!-- post -->
+                            {% for property in properties %}
                             <article class="post">
                                 <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-1.jpg' %}" alt="">
-                                        <span class="status">Rent</span>
+                                    <a href="{% url 'listing' property.id %}">
+                                        <img src="{{property.imageOne.url}}" alt="">
+                                        <!-- <span class="status">Rent</span> -->
                                     </a>
                                 </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
+                                <span class="location">{{property.location}}</span>
+                                <h3><a href="{% url 'listing' property.id %}">{{property.title}}</a></h3>
+                                <div class="price">Ksh {{property.rent}}</div>
                             </article>
-
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-2.jpg' %}" alt="">
-                                        <span class="status">Rent</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
-
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-3.jpg' %}" alt="">
-                                        <span class="status hot">hot</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
-
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-4.jpg' %}" alt="">
-                                        <span class="status">Rent</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
+                            {% endfor %}
                         </div>
                     </div>
 
