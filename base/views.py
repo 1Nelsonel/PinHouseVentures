@@ -1,8 +1,11 @@
 from django.shortcuts import render
 
+from .models import Property,Agent,Location,Propertycategory
+
 # Create your views here.
 def home(request):
-    context = {}
+    properties = Property.objects.all()
+    context = {'properties': properties}
     return render(request, 'base/home.html', context)
 
 def about(request):
@@ -22,11 +25,18 @@ def agent(request):
     return render(request, 'base/agent.html', context)
 
 def listings(request):
-    context = {}
+    properties = Property.objects.all()
+    agents = Agent.objects.all()
+    # property = Property.objects.get(id=pk)
+    categories = Propertycategory.objects.all()
+    context = {'properties': properties, 'agents': agents,'categories':categories}
     return render(request, 'base/listings.html', context)
 
-def listing(request):
-    context = {}
+def listing(request, pk):
+    property = Property.objects.get(id=pk)
+    properties = Property.objects.all()
+    categories = Propertycategory.objects.all()
+    context = {'property': property,'properties': properties,'categories':categories}
     return render(request, 'base/listing.html', context)
  
 def blogs(request):

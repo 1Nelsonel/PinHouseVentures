@@ -4,6 +4,23 @@
 
 {% load static %}
 
+<style>
+    
+    .imageTop img {
+        width: 100% !important;
+        height: 500px !important;
+        /* object-fit: cover !important; */
+        display: grid !important;
+    }
+
+    .imageDown img {
+        width: 95% !important;
+        height: 100px !important;
+        /* object-fit: cover !important; */
+        display: grid !important;
+    }
+</style>
+
 <!--Page Title-->
 <section class="page-title" style="background-image:url({% static 'assets/images/background/16.jpg' %});">
     <div class="auto-container">
@@ -24,19 +41,19 @@
         <div class="upper-info-box">
             <div class="row">
                 <div class="about-property col-lg-8 col-md-12 col-sm-12">
-                    <h2>Single House Near Orland Park,..</h2>
-                    <div class="location"><i class="la la-map-marker"></i> Orland Park, IL 35785, Chicago, United State</div>
+                    <h2>{{property.title}}</h2>
+                    <div class="location"><i class="la la-map-marker"></i> {{property.location}}</div>
                     <ul class="property-info clearfix">
-                        <li><i class="flaticon-dimension"></i> 356 Sq-Ft</li>
-                        <li><i class="flaticon-bed"></i> 4 Bedrooms</li>
-                        <li><i class="flaticon-car"></i> 2 Garage</li>
+                        <li><i class="flaticon-dimension"></i> {{property.size}} Sq-Ft</li>
+                        <li><i class="flaticon-bed"></i> {{property.bedroom}} Bedrooms</li>
+                        <li><i class="flaticon-car"></i> {{property.garage}} Garage</li>
                         <li><i class="flaticon-bathtub"></i> 3 Bathroom</li>
                     </ul>
                 </div>
                 <div class="price-column col-lg-4 col-md-12 col-sm-12">
                     <span class="title">Start From</span>
-                    <div class="price">$ 13,65,000</div>
-                    <span class="status">For Sale</span>
+                    <div class="price">Ksh {{property.rent}}</div>
+                    <!-- <span class="status">For Sale</span> -->
                 </div>
             </div>
         </div>
@@ -46,53 +63,53 @@
                 <div class="property-detail">
                     <div class="upper-box">
                         <div class="carousel-outer">
-                            <ul class="image-carousel owl-carousel owl-theme">
-                                <li><a href="{% static 'assets/images/resource/property-detail.jpg' %}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{% static 'assets/images/resource/property-detail.jpg' %}" alt=""></a></li>
+                            <ul class="imageTop image-carousel owl-carousel owl-theme">
+                                <li><a href="{{property.imageOne.url}}" class="lightbox-image" title="Image Caption Here">
+                                    <img src="{{property.imageOne.url}}" alt=""></a></li>
 
-                                <li><a href="{% static 'assets/images/resource/property-detail-2.jpg' %}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{% static 'assets/images/resource/property-detail-2.jpg' %}" alt=""></a></li>
+                                <li><a href="{{property.imageTwo.url}}" class="lightbox-image" title="Image Caption Here">
+                                    <img src="{{property.imageTwo.url}}" alt=""></a></li>
 
-                                <li><a href="{% static 'assets/images/resource/property-detail-3.jpg' %}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{% static 'assets/images/resource/property-detail-3.jpg' %}" alt=""></a></li>
+                                <li><a href="{{property.imageThree.url}}" class="lightbox-image" title="Image Caption Here">
+                                    <img src="{{property.imageThree.url}}" alt=""></a></li>
 
-                                <li><a href="{% static 'assets/images/resource/property-detail-4.jpg' %}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{% static 'assets/images/resource/property-detail-4.jpg' %}" alt=""></a></li>
+                                <li><a href="{{property.imageFour.url}}" class="lightbox-image" title="Image Caption Here">
+                                    <img src="{{property.imageFour.url}}" alt=""></a></li>
 
-                                <li><a href="{% static 'assets/images/resource/property-detail-5.jpg' %}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{% static 'assets/images/resource/property-detail-5.jpg' %}" alt=""></a></li>
+                                <li><a href="{{property.imageFive.url}}" class="lightbox-image" title="Image Caption Here">
+                                    <img src="{{property.imageFive.url}}" alt=""></a></li>
                             </ul>
                             
-                            <ul class="thumbs-carousel owl-carousel owl-theme">
-                                <li><img src="{% static 'assets/images/resource/property-thumb-9.jpg' %}" alt=""></li>
-                                <li><img src="{% static 'assets/images/resource/property-thumb-5.jpg' %}" alt=""></li>
-                                <li><img src="{% static 'assets/images/resource/property-thumb-8.jpg' %}" alt=""></li>
-                                <li><img src="{% static 'assets/images/resource/property-thumb-7.jpg' %}" alt=""></li>
-                                <li><img src="{% static 'assets/images/resource/property-thumb-6.jpg' %}" alt=""></li>
+                            <ul class="imageDown thumbs-carousel owl-carousel owl-theme">
+                                <li><img src="{{property.imageOne.url}}" alt=""></li>
+                                <li><img src="{{property.imageTwo.url}}" alt=""></li>
+                                <li><img src="{{property.imageThree.url}}" alt=""></li>
+                                <li><img src="{{property.imageFour.url}}" alt=""></li>
+                                <li><img src="{{property.imageFive.url}}" alt=""></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="lower-content">
-                        <h4>Descripation</h4>
-                        <p>Fantastic One Bedroom Facing East In This Amazing Trump Place Doorman Building. There Is A Large Kitchen, Washer And Dryer, Great Light And Plenty Of Closet Space. In Addition, There Are Amazing Custom Made ‘Built Ins’ In The Living Room Providing Plenty Of Storage. The Building Has A Gym, Pool, Children’s Room, Valet Services, Full Time Concierge And Doorman.</p>
-                        <blockquote>Main bath has been remodeled including a large shower with a tiled sitting bench. Back yard patio includes no-maintenance cover with built in lights. extra storage inside and out.</blockquote>
-                        <p>Short sale approved at $440,000!! home with remodeled kitchen, upgraded cabinets and counterto1ps, open floorplan with spacious layout including a huge separate family room. New windows and newer roof, new airconditioning, fully permitted additonal square footage to the original home. This is a beauty. Huge master with separate sitting/dressing area that would make a perfect nursery.Bonus walk in storage closet in family room.</p>
+                        <h4>Description</h4>
+                        <p>
+                            <blockquote>{{property.description |linebreaks}}</blockquote>
+                        </p>
                     </div>
 
                     <!-- Property Features -->
                     <div class="property-features">
                         <h4>Essential Information</h4>
                         <ul class="list-style-one">
-                            <li>Price: $500,000,0</li>
-                            <li>For: Sale</li>
+                            <li>Price: Ksh {{property.prise}}</li>
+                            <li>For: Rent</li>
                             <li>Property Types: Resident</li>
-                            <li>Area: 1000SQFT</li>
-                            <li>Country: USA </li>
-                            <li>City: Sterling</li>
-                            <li>Garages: 3 </li>
-                            <li>Bedrooms: 6 </li>
-                            <li>Bathrooms: 4</li>
+                            <li>Area: {{property.size}}sq-Meters</li>
+                            <li>Country: Kenya </li>
+                            <li>City: {{property.location.city}}</li>
+                            <li>Garages: {{property.garage}} </li>
+                            <li>Bedrooms: {{property.bedroom}}</li>
+                            <li>Bathrooms: 3</li>
                         </ul>
                     </div>
 
@@ -100,63 +117,33 @@
                     <div class="property-features">
                         <h4>Home Amenities</h4>
                         <ul class="list-style-one">
-                            <li>Air Conditioning</li>
-                            <li>Alarm System</li>
+                            {% if property.alarm_security %}
+                            <li>Alarm Security</li>
+                            {% endif %}
+                            {% if property.basketball_court %}
                             <li>Basketball court</li>
-                            <li>Bedding</li>
-                            <li>Dishes</li>
-                            <li>Dishwasher</li>
-                            <li>Doorman</li>
-                            <li>Elevator</li>
-                            <li>Fireplace</li>
-                            <li>Garden</li>
+                            {% endif %}
+                            {% if property.gym %}
                             <li>Gym</li>
-                            <li>Hair Dryer</li>
-                            <li>Heating System</li>
-                            <li>High Ceiling</li>
-                            <li>Hot Tub</li>
-                            <li>Microwave</li>
-                            <li>Iron</li>
-                            <li>Laundry</li>
-                            <li>Oven</li>
-                            <li>Parking</li>
-                            <li>Pool</li>
+                            {% endif %}
+                            {% if property.swimming_pool %}
+                            <li>Swimming Pool</li>
+                            {% endif %}
+                            {% if property.fireplace %}
+                            <li>Fireplace</li>
+                            {% endif %}
+                            {% if property.garden %}
+                            <li>Garden</li>
+                            {% endif %}
+                            <!--  -->
+                            {% if property.gated_community %}
+                            <li>Gated-Community</li>
+                            {% endif %}
+                            {% if property.own_compound %}
+                            <li>Own-Compound</li>
+                            {% endif %}
+                            
                         </ul>
-                    </div>
-
-                    <!-- Flooring Tabs -->
-                    <div class="flooring-tabs tabs-box">
-                        <div class="clearfix">
-                            <h4>Flooring Plans</h4>
-                            <ul class="tab-buttons">
-                                <li data-tab="#groud-floor" class="tab-btn active-btn">Grand Floor</li>
-                                <li data-tab="#first-floor" class="tab-btn">First Floor</li>
-                                <li data-tab="#second-floor" class="tab-btn">Second Floor</li>
-                            </ul>                
-                        </div>
-
-                        <div class="tabs-content">
-                            <!--Tab / Active Tab-->
-                            <div class="tab active-tab" id="groud-floor">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{% static 'assets/images/resource/house-map.jpg' %}" alt=""></figure>
-                                </div>
-                            </div>
-
-                            <!--Tab -->
-                            <div class="tab" id="first-floor">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{% static 'assets/images/resource/house-map.jpg' %}" alt=""></figure>
-                                </div>
-                            </div>
-
-                            <!--Tab -->
-                            <div class="tab" id="second-floor">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{% static 'assets/images/resource/house-map.jpg' %}" alt=""></figure>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Nearest Places -->
@@ -167,50 +154,45 @@
                                 <ul class="places-list">
                                     <li>
                                         <strong>City Center</strong>
-                                        <div class="text"><b>City Stars Mall</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
+                                        <div class="text">{{property.location.city}}</div>
                                     </li>
 
                                     <li>
                                         <strong>School</strong>
-                                        <div class="text"><b>Polar Secondary School,</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
+                                        <div class="text">{{property.location.school}} </div>
                                     </li>
 
-                                    <li>
+                                    <!-- <li>
                                         <strong>Restaurant</strong>
                                         <div class="text"><b>Spectra Resturant & Cafe, </b>Verso Street, Lundon, UK <span>2.5 km</span></div>
                                         <div class="text"><b>Mojesty Resturant, </b>Carrer De Verso Street, Lundon, UK<span>2.5 km</span></div>
-                                    </li>
+                                    </li> -->
 
                                     <li>
                                         <strong>Bank</strong>
-                                        <div class="text"><b>United Bank</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
+                                        <div class="text">{{property.location.bank}} </div>
                                     </li>
 
                                     <li>
                                         <strong>Airport</strong>
-                                        <div class="text"><b>Lundon International Airport</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
+                                        <div class="text">
+                                            {{property.location.airport}}</div>
                                     </li>
 
-                                    <li>
+                                    <!-- <li>
                                         <strong>Bar</strong>
                                         <div class="text"><b>Verna Plaza Bar</b>Verso Street, Lundon, UK <span>2.5 km</span></div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
 
                             <div class="map-column">
                                 <div class="map-outer">
                                     <!--Map Canvas-->
-                                    <div class="map-canvas"
-                                        data-zoom="12"
-                                        data-lat="-37.817085"
-                                        data-lng="144.955631"
-                                        data-type="roadmap"
-                                        data-hue="#ffc400"
-                                        data-title="Envato"
-                                        data-icon-path="images/icons/map-marker.png"
-                                        data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
-                                    </div>
+                                    
+                                        <!-- <iframe src="{{property.location.mapLink}}" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen>
+                                        </iframe> -->
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.0935088573!2d35.26921205!3d0.5117565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178101ae37f9f535%3A0xe2db337df0fc0820!2sEldoret!5e0!3m2!1sen!2ske!4v1671707830439!5m2!1sen!2ske" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -305,15 +287,15 @@
                         <div class="sidebar-title"><h2>About Agent</h2></div>
                         <div class="widget-content">
                             <div class="image-box">
-                                <figure class="image"><img src="{% static 'assets/images/resource/agent-img.jpg' %}" alt=""></figure>
+                                <figure class="image"><img src="{{property.agent.image.url}}" alt=""></figure>
                             </div>
                             <div class="info-box">
-                                <h4 class="name">Badoy ghaly</h4>
+                                <h4 class="name">{{property.agent.name}}</h4>
                                 <span class="designation">Real Estate Agent</span>
                                 <ul class="contact-info">
-                                    <li><strong>Phone:</strong> +92 123 4567 890</li>
-                                    <li><strong>Email:</strong> info@willesrealestate.com</li>
-                                    <li><strong>Address:</strong> 8542 El Paseo Grande New Yark</li>
+                                    <li><strong>Phone:</strong>{{property.agent.phone}}</li>
+                                    <li><strong>Email:</strong> <a href="mailto:{{property.agent.email}}">{{property.agent.email}}</a></li>
+                                    <!-- <li><strong>Address:</strong> 8542 El Paseo Grande New Yark</li> -->
                                 </ul>
                                 <div class="follow-us">
                                     <ul class="social-links">
@@ -427,10 +409,40 @@
                                         <div class="range-slider-one clearfix">
                                             <label>Price Filter</label>
                                             <div class="price-range-slider"></div>
-                                            <div class="input"><input type="text" class="price-amount" name="field-name" readonly></div>
-                                            <div class="title">US Doller</div>
+                                            <div class="input">
+                                                <input type="text" class="price-amount" name="field-name" readonly>
+                                            </div>
+                                            <div class="title">Ksh</div>
                                         </div>
                                     </div>
+                                    <!-- <div class="form-group">
+                                        <label for="range">Select a range:</label>
+                                        <input type="range" class="form-control-range" id="range" min="0" max="100" step="1">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="range">Select a range:</label>
+                                        <input type="range" class="form-control-range custom-range" id="range" min="0" max="100" step="1" style="height: 20px;">
+                                      </div>
+                                      
+                                      <style>
+                                        .custom-range::-webkit-slider-thumb {
+                                          -webkit-appearance: none;
+                                          appearance: none;
+                                          width: 20px;
+                                          height: 20px;
+                                          background: #fff;
+                                          border-radius: 50%;
+                                          cursor: pointer;
+                                        }
+                                        .custom-range::-moz-range-thumb {
+                                          width: 20px;
+                                          height: 20px;
+                                          background: #fff;
+                                          border-radius: 50%;
+                                          cursor: pointer;
+                                        }
+                                      </style> -->
+                                      
 
                                     <!-- Form Group -->
                                     <div class="form-group">
@@ -446,14 +458,9 @@
                     <div class="sidebar-widget categories">
                         <div class="sidebar-title"><h2>Category Properties</h2></div>
                         <ul class="cat-list">
-                            <li><a href="#">Apartments <span>22</span></a></li>
-                            <li><a href="#">Villas <span>45</span></a></li>
-                            <li><a href="#">Open Houses <span>62</span></a></li>
-                            <li><a href="#">Offices <span>70</span></a></li>
-                            <li><a href="#">Residentals <span>90</span></a></li>
-                            <li><a href="#">Co-Working <span>65</span></a></li>
-                            <li><a href="#">Flat <span>48</span></a></li>
-                            <li><a href="#">Cottage <span>24</span></a></li>
+                            {% for category in categories %}
+                            <li><a href="#">{{category.name}} <span>{{category.property_set.all.count}}</span></a></li>
+                            {% endfor %}
                         </ul>
                     </div>
 
@@ -462,56 +469,21 @@
                         <div class="sidebar-title"><h2>Recent Properties</h2></div>
                         <div class="widget-content">
                             <!-- Post -->
+                            {% for property in properties %}
                             <article class="post">
                                 <div class="post-thumb">
                                     <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-1.jpg' %}" alt="">
+                                        <img src="{{property.imageOne.url}}" alt="">
                                         <span class="status">Rent</span>
                                     </a>
                                 </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
+                                <span class="location">{{property.location}}</span>
+                                <h3><a href="blog-detail.html">{{property.title}}</a></h3>
+                                <div class="price">Ksh {{property.rent}}</div>
                             </article>
+                            {% endfor %}
 
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-2.jpg' %}" alt="">
-                                        <span class="status">Rent</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
-
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-3.jpg' %}" alt="">
-                                        <span class="status hot">hot</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
-
-                            <!-- Post -->
-                            <article class="post">
-                                <div class="post-thumb">
-                                    <a href="blog-detail.html">
-                                        <img src="{% static 'assets/images/resource/property-thumb-4.jpg' %}" alt="">
-                                        <span class="status">Rent</span>
-                                    </a>
-                                </div>
-                                <span class="location">Lundon, UK</span>
-                                <h3><a href="blog-detail.html">Laxury Balles Villa</a></h3>
-                                <div class="price">$ 760,000</div>
-                            </article>
+                           
                         </div>
                     </div>
 
