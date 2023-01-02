@@ -17,11 +17,15 @@ def faqs(request):
     return render(request, 'base/faqs.html', context)
 
 def agents(request):
-    context = {}
+    agents = Agent.objects.all()
+    context = {'agents': agents}
     return render(request, 'base/agents.html', context)
 
-def agent(request):
-    context = {}
+def agent(request, pk):
+    agent = Agent.objects.get(id=pk)
+    properties = Property.objects.filter(agent=agent)
+    agents = Agent.objects.all()
+    context = {'agent': agent,'properties':properties,'agents': agents}
     return render(request, 'base/agent.html', context)
 
 def listings(request):
