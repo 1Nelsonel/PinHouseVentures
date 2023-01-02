@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Property,Agent,Location,Propertycategory
+from .models import Property,Agent,Location,Propertycategory,Blog,Comment
 
 # Create your views here.
 def home(request):
@@ -44,7 +44,8 @@ def listing(request, pk):
     return render(request, 'base/listing.html', context)
  
 def blogs(request):
-    context = {}
+    blogs = Blog.objects.all()
+    context = {'blogs':blogs}
     return render(request, 'base/blogs.html', context)
 
 def blog(request):

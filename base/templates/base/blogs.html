@@ -4,6 +4,17 @@
 
 {% load static %}
 
+<style>
+    
+    
+    .blog-image img {
+        width: 100% !important;
+        height: 330px !important;
+        /* object-fit: cover !important; */
+        display: grid !important;
+    }
+</style>
+
 <!--Page Title-->
 <section class="page-title" style="background-image:url({% static 'assets/images/background/16.jpg' %});">
     <div class="auto-container">
@@ -26,19 +37,25 @@
             <div class="content-side col-lg-8 col-md-12 col-sm-12">
                 <div class="blog-list-view">
                     <!-- News Block -->
+                    {% for blog in blogs %}
                     <div class="news-block-three">
                         <div class="row">
                             <div class="image-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'assets/images/resource/news-1.jpg' %}" alt=""></a></figure>
+                                <figure class="image blog-image">
+                                    <a href="blog-detail.html">
+                                    <img src="{{blog.image.url}}" alt="">
+                                </a></figure>
                             </div>
                             <div class="content-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <ul class="info">
-                                        <li>by <span>Anoma</span></li>
-                                        <li>JANUARY 14, 2018</li>
+                                        <li>by <span>{{blog.host}}</span></li>
+                                        <li>{{blog.created_at|timesince}} :ago</li>
                                     </ul>
-                                    <h3><a href="blog-detail.html">Dazzling retreat resort with the roof Modern Design</a></h3>
-                                    <div class="text">Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge.</div>
+                                    <h3><a href="blog-detail.html">{{blog.title}}</a></h3>
+                                    <div class="text">
+                                        {{blog.body |truncatechars:170}}
+                                    </div>
                                     <div class="btn-box">
                                         <a href="blog-detail.html" class="theme-btn btn-style-one">Read More</a>
                                     </div>
@@ -46,94 +63,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- News Block -->
-                    <div class="news-block-three">
-                        <div class="row">
-                            <div class="image-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'assets/images/resource/news-8.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="content-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <ul class="info">
-                                        <li>by <span>Anoma</span></li>
-                                        <li>JANUARY 14, 2018</li>
-                                    </ul>
-                                    <h3><a href="blog-detail.html">Dazzling retreat resort with the roof Modern Design</a></h3>
-                                    <div class="text">Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge.</div>
-                                    <div class="btn-box">
-                                        <a href="blog-detail.html" class="theme-btn btn-style-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block-three">
-                        <div class="row">
-                            <div class="image-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'assets/images/resource/news-9.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="content-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <ul class="info">
-                                        <li>by <span>Anoma</span></li>
-                                        <li>JANUARY 14, 2018</li>
-                                    </ul>
-                                    <h3><a href="blog-detail.html">Dazzling retreat resort with the roof Modern Design</a></h3>
-                                    <div class="text">Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge.</div>
-                                    <div class="btn-box">
-                                        <a href="blog-detail.html" class="theme-btn btn-style-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block-three">
-                        <div class="row">
-                            <div class="image-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'assets/images/resource/news-10.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="content-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <ul class="info">
-                                        <li>by <span>Anoma</span></li>
-                                        <li>JANUARY 14, 2018</li>
-                                    </ul>
-                                    <h3><a href="blog-detail.html">Dazzling retreat resort with the roof Modern Design</a></h3>
-                                    <div class="text">Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge.</div>
-                                    <div class="btn-box">
-                                        <a href="blog-detail.html" class="theme-btn btn-style-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block-three">
-                        <div class="row">
-                            <div class="image-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <figure class="image"><a href="blog-detail.html"><img src="{% static 'assets/images/resource/news-12.jpg' %}" alt=""></a></figure>
-                            </div>
-                            <div class="content-box col-xl-6 col-lg-12 col-md-6 col-sm-12">
-                                <div class="inner-box">
-                                    <ul class="info">
-                                        <li>by <span>Anoma</span></li>
-                                        <li>JANUARY 14, 2018</li>
-                                    </ul>
-                                    <h3><a href="blog-detail.html">Dazzling retreat resort with the roof Modern Design</a></h3>
-                                    <div class="text">Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge.</div>
-                                    <div class="btn-box">
-                                        <a href="blog-detail.html" class="theme-btn btn-style-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     <!-- Pagination -->
                     <div class="styled-pagination">

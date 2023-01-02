@@ -57,16 +57,20 @@
                                     <figure class="image">
                                         <img src="{{property.imageOne.url}}" alt="">
                                     </figure>
-                                    <span class="for">FOR SALE</span>
-                                    <span class="featured">FEATURED</span>
+                                    <!-- <span class="for">FOR SALE</span>
+                                    <span class="featured">FEATURED</span> -->
                                     <ul class="info clearfix">
-                                        <li><a href="{% url 'listing' property.id %}"><i class="la la-calendar-minus-o"></i>2 Years Ago</a></li>
+                                        <li><a href="{% url 'listing' property.id %}">
+                                            <i class="la la-calendar-minus-o">
+
+                                            </i>{{property.created|timesince}} :ago</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="lower-content">
                                     <ul class="tags">
                                         <li><b>Property Category: </b></li>
-                                        <li><a href="property-detail.html">{{property.category}}</a>,</li>
+                                        <li><a href="{% url 'listing' property.id %}">{{property.category}}</a>,</li>
                                       
                                     </ul>
                                     <div class="thumb"><img src="{{property.agent.image.url}}" alt=""></div>
@@ -80,7 +84,7 @@
                                     </ul>
                                     <div class="property-price clearfix">
                                         <div class="read-more"><a href="{% url 'listing' property.id %}" class="theme-btn">More Detail</a></div>
-                                        <div class="price">Ksh {{property.rent}}</div>
+                                        <div class="price">Ksh. {{property.rent}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -220,13 +224,13 @@
                             {% for property in properties %}
                             <article class="post">
                                 <div class="post-thumb">
-                                    <a href="blog-detail.html">
+                                    <a href="{% url 'listing' property.id %}">
                                         <img src="{{property.imageOne.url}}" alt="">
                                         <!-- <span class="status">Rent</span> -->
                                     </a>
                                 </div>
                                 <span class="location">{{property.location}}</span>
-                                <h3><a href="blog-detail.html">{{property.title}}</a></h3>
+                                <h3><a href="{% url 'listing' property.id %}">{{property.title}}</a></h3>
                                 <div class="price">Ksh {{property.rent}}</div>
                             </article>
                             {% endfor %}
