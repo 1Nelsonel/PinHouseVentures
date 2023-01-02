@@ -10,6 +10,6 @@ urlpatterns = [
     path('listings/', views.listings, name='listings'),
     path('listing/<str:pk>/', views.listing, name='listing'),
     path('blogs/', views.blogs, name='blogs'),
-    path('blog/', views.blog, name='blog'),
+    path('blog/<str:pk>/', views.blog, name='blog'),
     path('contact/', views.contact, name='contact'),
 ]

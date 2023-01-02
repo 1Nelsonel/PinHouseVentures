@@ -48,8 +48,12 @@ def blogs(request):
     context = {'blogs':blogs}
     return render(request, 'base/blogs.html', context)
 
-def blog(request):
-    context = {}
+def blog(request, pk):
+    blog = Blog.objects.get(id=pk)
+    blogs = Blog.objects.all()
+    properties = Property.objects.all()
+    categories = Propertycategory.objects.all()
+    context = {'blog':blog,'blogs':blogs,'properties': properties,'categories':categories}
     return render(request, 'base/blog.html', context)
 
 def contact(request):
