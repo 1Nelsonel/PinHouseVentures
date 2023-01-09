@@ -50,9 +50,11 @@
                                 <h2 class="widget-title">Get in Touch</h2>
                                 <div class="widget-content">
                                     <ul class="contact-list">
-                                        <li><span class="la la-map-marker"></span> 360 Harvest St, North Subract, <br>London. United States Of Amrica.</li>
-                                        <li><span class="la la-phone"></span>3695-548555 - 254-6589856</li>
-                                        <li><span class="la la-envelope"></span><a href="#">info@benaa.com</a></li>
+                                        <li><span class="la la-map-marker"></span> Barng'etuny Plaza, <br>Eldoret, Kenya.</li>
+                                        <li><span class="la la-phone"></span>
+                                            <a href="tel:+254720841555">+254720841555</a>
+                                        </li>
+                                        <li><span class="la la-envelope"></span><a href="mailto:pinhouseventures@gmail.com">pinhouseventures@gmail.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -64,16 +66,9 @@
                                 <h2 class="widget-title">PROPERTY CITIES</h2>
                                 <div class="widget-content">
                                     <ul class="list clearfix">
-                                        <li><a href="properties.html">Athina</a></li>
-                                        <li><a href="properties.html">Austin</a></li>
-                                        <li><a href="properties.html">Baytown</a></li>
-                                        <li><a href="properties.html">Brampton</a></li>
-                                        <li><a href="properties.html">Cedar Hill</a></li>
-                                        <li><a href="properties.html">Chester</a></li>
-                                        <li><a href="properties.html">Chicago</a></li>
-                                        <li><a href="properties.html">Coleman</a></li>
-                                        <li><a href="properties.html">Corpus Christi</a></li>
-                                        <li><a href="properties.html">Dallas</a></li>
+                                        {% for property in properties%}
+                                        <li><a href="properties.html">{{property.location}}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -90,17 +85,13 @@
                                 <h2 class="widget-title">Popular Posts</h2>
                                  <!--Footer Column-->
                                 <div class="widget-content">
+                                    {% for blog in blogs %}
                                     <div class="post">
-                                        <div class="thumb"><a href="blog-detail.html"><img src="{% static 'images/resource/post-thumb-1.jpg' %}" alt=""></a></div>
-                                        <h4><a href="blog-detail.html">Modern Design Building </a></h4>
-                                        <span class="date">1 October, 2017</span>
+                                        <div class="thumb"><a href="blog-detail.html"><img src="{{blog.image.url}}" alt=""></a></div>
+                                        <h4><a href="blog-detail.html">{{blog.title}}</a></h4>
+                                        <span class="date">{{blog.created_at|timesince}}</span>
                                     </div>
-
-                                    <div class="post">
-                                        <div class="thumb"><a href="blog-detail.html"><img src="{% static 'images/resource/post-thumb-2.jpg' %}" alt=""></a></div>
-                                        <h4><a href="blog-detail.html">Real Eatate Expo 2018</a></h4>
-                                        <span class="date">10 October, 2017</span>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -111,11 +102,11 @@
                                 <h2 class="widget-title">USEFUL LINKS</h2>
                                 <div class="widget-content">
                                     <ul class="list clearfix">
-                                        <li><a href="properties.html">Rental Builidngs</a></li>
-                                        <li><a href="properties.html">Browe all Categories</a></li>
-                                        <li><a href="properties.html">Mortagages Rates</a></li>
-                                        <li><a href="properties.html">Terms of use</a></li>
-                                        <li><a href="properties.html">Privacy Policy</a></li>
+                                        <li><a href="#">Rental Builidngs</a></li>
+                                        <li><a href="#">Browe all Categories</a></li>
+                                        <li><a href="#">Mortagages Rates</a></li>
+                                        <li><a href="#">Terms of use</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>

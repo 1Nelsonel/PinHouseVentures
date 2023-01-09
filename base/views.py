@@ -7,23 +7,27 @@ from .models import Property, Agent, Location, Propertycategory, Blog, Comment
 
 def home(request):
     properties = Property.objects.all()
-    context = {'properties': properties}
+    blogs = Blog.objects.all()
+    context = {'properties': properties, 'blogs': blogs}
     return render(request, 'base/home.html', context)
 
 
 def about(request):
-    context = {}
+    blogs = Blog.objects.all()
+    context = {'blogs': blogs}
     return render(request, 'base/about.html', context)
 
 
 def faqs(request):
-    context = {}
+    blogs = Blog.objects.all()
+    context = {'blogs': blogs}
     return render(request, 'base/faqs.html', context)
 
 
 def agents(request):
     agents = Agent.objects.all()
-    context = {'agents': agents}
+    blogs = Blog.objects.all()
+    context = {'agents': agents,'blogs': blogs}
     return render(request, 'base/agents.html', context)
 
 
@@ -31,7 +35,8 @@ def agent(request, pk):
     agent = Agent.objects.get(id=pk)
     properties = Property.objects.filter(agent=agent)
     agents = Agent.objects.all()
-    context = {'agent': agent, 'properties': properties, 'agents': agents}
+    blogs = Blog.objects.all()
+    context = {'agent': agent, 'properties': properties, 'agents': agents,'blogs': blogs}
     return render(request, 'base/agent.html', context)
 
 
@@ -87,5 +92,6 @@ def blog(request, pk):
 
 
 def contact(request):
-    context = {}
+    blogs = Blog.objects.all()
+    context = {'blogs': blogs}
     return render(request, 'base/contact.html', context)
