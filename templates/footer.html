@@ -66,7 +66,7 @@
                                 <h2 class="widget-title">PROPERTY CITIES</h2>
                                 <div class="widget-content">
                                     <ul class="list clearfix">
-                                        {% for property in properties%}
+                                        {% for property in properties.all|slice:"5"  %}
                                         <li><a href="properties.html">{{property.location}}</a></li>
                                         {% endfor %}
                                     </ul>
@@ -85,7 +85,7 @@
                                 <h2 class="widget-title">Popular Posts</h2>
                                  <!--Footer Column-->
                                 <div class="widget-content">
-                                    {% for blog in blogs %}
+                                    {% for blog in blogs.all|slice:"3" %}
                                     <div class="post">
                                         <div class="thumb"><a href="blog-detail.html"><img src="{{blog.image.url}}" alt=""></a></div>
                                         <h4><a href="blog-detail.html">{{blog.title}}</a></h4>
@@ -126,12 +126,12 @@
             <div class="inner-container clearfix">
                 <div class="footer-nav">
                     <ul class="clearfix">
-                       <li><a href="index-2.html">Home</a></li> 
-                       <li><a href="properties.html">Properties</a></li> 
-                       <li><a href="properties.html">Agencies</a></li> 
-                       <li><a href="agents.html">Agent</a></li> 
-                       <li><a href="blog.html">Blogs</a></li> 
-                       <li><a href="contact.html">Contact</a></li> 
+                       <li><a href="{% url 'home' %}">Home</a></li> 
+                       <li><a href="{% url 'listings' %}">Properties</a></li> 
+                       <!-- <li><a href="properties.html">Agencies</a></li>  -->
+                       <li><a href="{% url 'agents' %}">Agent</a></li> 
+                       <li><a href="{% url 'blogs' %}">Blogs</a></li> 
+                       <li><a href="{% url 'contact' %}">Contact</a></li> 
                     </ul>
                 </div>
                                                                   
