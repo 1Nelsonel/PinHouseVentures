@@ -1,13 +1,26 @@
 {% load static %}
+
+<style>
+    .footer-image {
+        width: 150px !important;
+        height: 70px !important;
+        object-fit: cover !important;
+        position: center !important;
+    }    
+</style>
 <!-- Main Footer -->
-<footer class="main-footer" style="background-image: url({% static 'images/background/3.jpg' %});">
+<footer class="main-footer bg-dark">
     <div class="auto-container">
         <div class="upper-box">
             <div class="row">
                 <!-- Upper column -->
                 <div class="upper-column col-lg-3 col-md-12 col-sm-12">
                     <div class="footer-logo">
-                        <figure class="image"><a href="{% url 'home' %}"><img src="{% static 'assets/logo/pinhouse.png' %}" width="150px" height="150px"  alt="pinhouse logo"></a></figure>
+                        <!-- <figure class="image">
+                            <a href="{% url 'home' %}">
+                                <img src="{% static 'assets/logo/pinhouse.png' %}" width="150px" height="50px"  alt="pinhouse logo">
+                            </a>
+                        </figure> -->
                     </div>
                 </div>
 
@@ -56,6 +69,11 @@
                                         </li>
                                         <li><span class="la la-envelope"></span><a href="mailto:pinhouseventures@gmail.com">pinhouseventures@gmail.com</a></li>
                                     </ul>
+                                    
+                                        <a href="{% url 'home' %}">
+                                            <img class="footer-image" src="{% static 'assets/logo/pinhouse.png' %}"   alt="pinhouse logo">
+                                         </a>
+                                    
                                 </div>
                             </div>
                         </div>
