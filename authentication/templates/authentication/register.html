@@ -1,0 +1,51 @@
+{% extends 'auth-main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+    <!--Login Section-->
+    <section class="login-section">
+        <div class="auto-container">
+            <div class="row clearfix justify-content-center">
+                                
+                <div class="column col-md-6 col-sm-12 col-xs-12">
+                    <h2>Register</h2>
+                    
+                    <!-- Register Form -->
+                    <div class="login-form register-form">
+                        <!--Login Form-->
+                        <form method="post">
+                            <div class="form-group">
+                                <label>username</label>
+                                <input type="text" name="username" placeholder="Your Email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Enter Your Password</label>
+                                <input type="password" name="password" placeholder="Password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Enter Your Password</label>
+                                <input type="password" name="password1" placeholder="Confirm Password" required>
+                            </div>
+                            
+                            <div class="form-group text-right">
+                                <button class="theme-btn btn-style-one" type="submit" name="submit-form">Register</button>
+                            </div>
+                        </form>      
+                    </div>
+                    <!--End Register Form -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Login Section-->  
+
+{% endblock %}
