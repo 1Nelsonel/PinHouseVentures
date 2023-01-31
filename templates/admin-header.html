@@ -19,7 +19,7 @@
          <div class="upper-right">
              <ul class="clearfix">
                  <li class="dropdown option-box">
-                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="{% static 'assets/admin/images/resource/thumb-1.jpg' %}" alt="avatar" class="thumb">My Account</a>
+                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="{% static 'assets/admin/images/resource/thumb-1.jpg' %}" alt="avatar" class="thumb">{{user.username}}</a>
                      <div class="dropdown-menu">
                          <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
                          <a class="dropdown-item" href="{% url 'messages' %}">Messages</a>
