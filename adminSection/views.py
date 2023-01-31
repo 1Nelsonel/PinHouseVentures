@@ -8,7 +8,8 @@ from base.models import Property, Agent, Location, Propertycategory, Blog, Comme
 
 @login_required(login_url='login')
 def dashboard(request):
-    context = {}
+    property_count = Property.objects.all().count()
+    context = {'property_count': property_count}
     return render(request, 'adminSection/dashboard.html', context)
 
 @login_required(login_url='login')
@@ -24,7 +25,7 @@ def bookings(request):
 
 @login_required(login_url='login')
 def myProperty(request):
-    properties = Property.objects.all()
+    properties = Property.objects.filter(agent=request.agent)
     context = {'properties': properties}
     return render(request, 'adminSection/my-properties.html', context) 
 
