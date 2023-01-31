@@ -7,5 +7,5 @@ urlpatterns = [
     path('bookings/', views.bookings, name="bookings"),
     path('my-property/', views.myProperty, name="my-property"),
     path('messages/', views.messages, name="messages"),
-    path('my-profile', views.myProfile, name="my-profile")
+    path('my-profile/', views.myProfile, name="my-profile")
 ]

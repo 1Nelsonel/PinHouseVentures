@@ -2,6 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True, null=True)
+    
+    def __str__(self):
+        return self.user.username
+
+    @receiver(post_save, sender=User) #add this
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User) #add this
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
 class Agent(models.Model):
     name = models.CharField(max_length=100, null=True)
     phone = models.CharField(max_length=20, null=True)
