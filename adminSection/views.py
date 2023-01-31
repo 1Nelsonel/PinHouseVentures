@@ -1,11 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from base.models import Property, Agent, Location, Propertycategory, Blog, Comment
+from django.db import transaction
+from base.models import Property, Agent, Location, Propertycategory, Blog, Comment, Profile,User
+from django.contrib.auth.models import User
+from django.forms import ModelForm
+
+# from .forms import UserForm,UserProfileForm
+
 
 # Create your views here.
-# @login_required(login_url='login')
-
 @login_required(login_url='login')
 def dashboard(request):
     property_count = Property.objects.all().count()
@@ -29,9 +33,38 @@ def myProperty(request):
     context = {'properties': properties}
     return render(request, 'adminSection/my-properties.html', context) 
 
+# ---------------------------------------------------------------------------
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = fields = ['username', 'email','first_name', 'last_name']
+
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image','phone_number','description']
+
+# -----------------------------------------------------------------------------
+
 @login_required(login_url='login')
+@transaction.atomic
 def myProfile(request):
-    context = {}
+    profiles = Profile.objects.all()  
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        user_profile_form = UserProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and user_profile_form.is_valid():
+            user_form.save()
+            user_profile_form.save()
+
+            return redirect("my-profile")
+    else:
+        user_form = UserForm(instance=request.user)
+        user_profile_form = UserProfileForm(instance=request.user.profile)
+
+    context = {'user_form':user_form,'user_profile_form':user_profile_form,'profiles':profiles}
+    
     return render(request, 'adminSection/my-profile.html', context) 
 
 @login_required(login_url='login')

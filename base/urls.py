@@ -9,7 +9,7 @@ urlpatterns = [
     path('agent/<str:pk>/', views.agent, name='agent'),
     path('listings/', views.listings, name='listings'),
     path('listing/<str:pk>/', views.listing, name='listing'),
-    # path('blogs/', views.blogs, name='blogs'),
-    # path('blog/<str:pk>/', views.blog, name='blog'),
+    path('blogs/', views.blogs, name='blogs'),
+    path('blog/<str:pk>/', views.blog, name='blog'),
     path('contact/', views.contact, name='contact'),
 ]

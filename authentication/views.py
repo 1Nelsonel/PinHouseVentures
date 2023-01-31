@@ -8,21 +8,6 @@ from base.models import User
 from .forms import UserForm
 from django.contrib import messages
 
-# Create your views here.
-# def register(request):
-#     if request.method == "POST":
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#             user.username = user.username.lower()
-#             user = form.save()
-
-#             login(request, user)
-#             return redirect("dashboard")
-#     else:
-#         form = UserCreationForm()
-#     return render(request,  'authentication/register.html', {"form": form})
-
 def registerPage(request):
     form = UserCreationForm()
 
@@ -43,8 +28,8 @@ def registerPage(request):
 
 def loginPage(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get('username').lower()
+        password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)

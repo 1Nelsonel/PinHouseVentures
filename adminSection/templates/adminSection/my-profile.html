@@ -10,12 +10,11 @@
 	            <div class="dashboard-content">
 	                <div class="dashboard-header clearfix">
 	                    <div class="row">
-	                        <div class="col-md-6 col-sm-12"><h4>Submit Property</h4></div>
+	                        <div class="col-md-6 col-sm-12"><h4>My Profile</h4></div>
 	                        <div class="col-md-6 col-sm-12">
 	                            <div class="breadcrumb-nav">
 	                                <ul>
-	                                    <li><a href="../index-2.html">Index</a></li>
-	                                    <li><a href="dashboard.html">Dashboard</a></li>
+	                                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
 	                                    <li class="active">Submit Property</li>
 	                                </ul>
 	                            </div>
@@ -32,7 +31,7 @@
 	                    					<div class="col-lg-4 col-md-12 col-sm-12">
 	                    						<!-- Edit profile photo -->
 		                                        <div class="edit-profile-photo">
-		                                            <img src="images/resource/avatar.jpg" alt="profile-photo">
+		                                            <img src="{{ user.profile.image.url }}" alt="profile-photo">
 		                                            <div class="change-photo-btn">
 		                                                <div class="photoUpload">
 		                                                    <span><i class="la la-cloud-upload"></i></span>
@@ -43,37 +42,23 @@
 	                    					</div>
 
 	                    					<div class="col-lg-8 col-md-12 col-sm-12">
-				                    			<form method="post" action="http://expert-themes.com/html/willies/admin/index.html">
+				                    			<form method="post">
+													{% csrf_token %}
 					                                <div class="row">
 					                                	<!-- Form Group -->
+														{% for field in user_form %}
 					                                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
-					                                        <label>Your Name</label>
-					                                        <input type="text" name="name" placeholder="John Doe" required>
+					                                        <label>{{field.label}}</label>
+															{{ field }}
 					                                    </div>
+														{% endfor %}
 
-					                                    <!-- Form Group -->
+														{% for field in user_profile_form %}
 					                                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
-					                                        <label>Your Title</label>
-					                                        <input type="text" name="title" placeholder="Your Title" required>
+					                                        <label>{{field.label}}</label>
+															{{ field }}
 					                                    </div>
-
-					                                    <!-- Form Group -->
-					                                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
-					                                        <label>Phone #</label>
-					                                        <input type="text" name="phone" placeholder="Phone" required>
-					                                    </div>
-
-					                                    <!-- Form Group -->
-					                                    <div class="form-group col-lg-6 col-md-6 col-sm-12">
-					                                        <label>Your Email</label>
-					                                        <input type="email" name="email" placeholder="Your Email" required>
-					                                    </div>
-
-					                                    <!-- Form Group -->
-					                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
-					                                        <label>About You</label>
-					                                        <textarea name="about-you" placeholder="Personal Info"></textarea>
-					                                    </div>
+														{% endfor %}
 
 					                                    <!-- Form Group -->
 					                                    <div class="form-group text-right col-lg-12 col-md-12 col-sm-12">
