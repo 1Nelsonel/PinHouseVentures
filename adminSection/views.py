@@ -82,27 +82,6 @@ class UserProfileForm(ModelForm):
 
 @login_required(login_url='login')
 @transaction.atomic
-# def myProfile(request):
-#     profiles = Profile.objects.all()
-
-#     if request.method == 'POST':
-#         user_form = UserForm(request.POST, instance=request.user)
-#         user_profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-#         if user_form.is_valid() and user_profile_form.is_valid():
-#             user_form.save()
-#             user_profile_form.save()
-
-#             return redirect("my-profile")
-
-#     else:
-#         user_form = UserForm(instance=request.user)
-#         user_profile_form = UserProfileForm(instance=request.user.profile)
-
-#     context = {'user_form': user_form,
-#                'user_profile_form': user_profile_form, 'profiles': profiles}
-
-#     return render(request, 'adminSection/my-profile.html', context)
-
 def myProfile(request):
     profiles = Profile.objects.all()
 
