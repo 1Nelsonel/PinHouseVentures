@@ -1,61 +1,71 @@
 {% load static %}
 
- <!-- Header Span -->
- <span class="header-span"></span>
+<!-- Header Span -->
+<span class="header-span"></span>
 
- <!-- Main Header-->
- <header class="main-header">
-     <div class="main-box clearfix">
-         <!-- Logo Box -->
-         <div class="logo-box">
-             <div class="logo">
+<!-- Main Header-->
+<header class="main-header">
+    <div class="main-box clearfix">
+        <!-- Logo Box -->
+        <div class="logo-box">
+            <div class="logo">
                 <a href="{% url 'dashboard' %}" title="">
-                    <img src="{% static 'assets/logo/pinhouse.png' %}" width="150px" height="150px"  alt="pinhouse logo" title="">
+                    <img src="{% static 'assets/logo/pinhouse.png' %}" width="150px" height="150px" alt="pinhouse logo"
+                        title="">
                 </a>
             </div>
-         </div>
+        </div>
 
-         <!-- Upper Right-->
-         <div class="upper-right">
-             <ul class="clearfix">
-                 <li class="dropdown option-box">
-                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="{% static 'assets/admin/images/resource/thumb-1.jpg' %}" alt="avatar" class="thumb">{{user.username}}</a>
-                     <div class="dropdown-menu">
-                         <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
-                         <a class="dropdown-item" href="{% url 'messages' %}">Messages</a>
-                         <a class="dropdown-item" href="{% url 'bookings' %}">Bookings</a>
-                         <a class="dropdown-item" href="{% url 'my-profile' %}">My profile</a>
-                         <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-                     </div>
-                 </li>
-                 <li class="submit-property">
-                     <a href="{% url 'add-property' %}" class="theme-btn btn-style-one">Submit Property <i class="pe-7s-up-arrow"></i></a>
-                 </li>
-                 <li class="nav-toggler">
-                     <button class="toggler-btn nav-btn"><span class="bar bar-one"></span><span class="bar bar-two"></span><span class="bar bar-three"></span></button>
-                 </li>
-             </ul>
-         </div>
-     </div>
-     <!--End Header Lower-->
- </header>
- <!--End Main Header -->
- 
- <!-- Hidden Bar -->
- <section class="hidden-bar">
-     <div class="dashboard-inner">
-         <div class="cross-icon"><span class="pe-7s-close-circle"></span></div>
-         <ul class="navigation">
-             <li class="active"><a href="dashboard.html"><i class="pe-7s-culture"></i> Dashboard</a></li>
-             <li><a href="{% url 'messages' %}"><i class="pe-7s-mail"></i> Messages <span class="tag">6</span></a></li>
-             <li><a href="{% url 'bookings' %}"><i class="pe-7s-date"></i>Bookings</a></li>
-             <li><a href="{% url 'my-property' %}"><i class="pe-7s-diamond"></i>My Properties</a></li>
-             <li><a href="my-invoices.html"><i class="pe-7s-note2"></i>My Invoices</a></li>
-             <li><a href="favorited-properties.html"><i class="pe-7s-like2"></i>Favorited Properties</a></li>
-             <li><a href="{% url 'add-property' %}"><i class="pe-7s-up-arrow"></i>Submit Property</a></li>
-             <li><a href="{% url 'my-profile' %}"><i class="pe-7s-user"></i>My Profile</a></li>
-             <li><a href="{% url 'logout' %}"><i class="pe-7s-back-2"></i>Logout</a></li>
-         </ul>
-     </div>
- </section>
- <!--End Hidden Bar -->
+        <!-- Upper Right-->
+        <div class="upper-right">
+            <ul class="clearfix">
+                <li class="dropdown option-box">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                       
+                        {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="avatar" class="thumb">
+                        {% else %}
+                        <img src="{% static 'assets/images/resource/default_user.png' %}" alt="avatar" class="thumb">
+                        {% endif %}
+                        {{user.username}}</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="dropdown-item" href="{% url 'messages' %}">Messages</a>
+                        <a class="dropdown-item" href="{% url 'bookings' %}">Bookings</a>
+                        <a class="dropdown-item" href="{% url 'my-profile' %}">My profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                </li>
+                <li class="submit-property">
+                    <a href="{% url 'add-property' %}" class="theme-btn btn-style-one">Submit Property <i
+                            class="pe-7s-up-arrow"></i></a>
+                </li>
+                <li class="nav-toggler">
+                    <button class="toggler-btn nav-btn"><span class="bar bar-one"></span><span
+                            class="bar bar-two"></span><span class="bar bar-three"></span></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--End Header Lower-->
+</header>
+<!--End Main Header -->
+
+<!-- Hidden Bar -->
+<section class="hidden-bar">
+    <div class="dashboard-inner">
+        <div class="cross-icon"><span class="pe-7s-close-circle"></span></div>
+        <ul class="navigation">
+            <li class="active"><a href="dashboard.html"><i class="pe-7s-culture"></i> Dashboard</a></li>
+            <li><a href="{% url 'messages' %}"><i class="pe-7s-mail"></i> Messages <span class="tag">6</span></a></li>
+            <li><a href="{% url 'bookings' %}"><i class="pe-7s-date"></i>Bookings</a></li>
+            <li><a href="{% url 'my-property' %}"><i class="pe-7s-diamond"></i>My Properties</a></li>
+            <li><a href="my-invoices.html"><i class="pe-7s-note2"></i>My Invoices</a></li>
+            <li><a href="favorited-properties.html"><i class="pe-7s-like2"></i>Favorited Properties</a></li>
+            <li><a href="{% url 'add-property' %}"><i class="pe-7s-up-arrow"></i>Submit Property</a></li>
+            <li><a href="{% url 'my-profile' %}"><i class="pe-7s-user"></i>My Profile</a></li>
+            <li><a href="{% url 'logout' %}"><i class="pe-7s-back-2"></i>Logout</a></li>
+        </ul>
+    </div>
+</section>
+<!--End Hidden Bar -->

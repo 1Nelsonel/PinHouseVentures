@@ -18,27 +18,6 @@ def dashboard(request):
 
 
 @login_required(login_url='login')
-# def addProperty(request):
-#     if request.method == 'POST':
-#         form = PropertyForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             property = form.save(commit=False)
-#             if 'imageOne' in request.FILES:
-#                 property.imageOne = request.FILES['imageOne']
-#             if 'imageTwo' in request.FILES:
-#                 property.imageTwo = request.FILES['imageTwo']
-#             if 'imageThree' in request.FILES:
-#                 property.imageThree = request.FILES['imageThree']
-#             if 'imageFour' in request.FILES:
-#                 property.imageFour = request.FILES['imageFour']
-#             if 'imageFive' in request.FILES:
-#                 property.imageFive = request.FILES['imageFive']
-#             property.save()
-#             return redirect("my-property")
-#     else:
-#         form = PropertyForm()
-#     context = {'form': form}
-#     return render(request, 'adminSection/submit-property.html', context)
 def addProperty(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
