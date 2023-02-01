@@ -1,0 +1,88 @@
+{% extends 'admin-main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="dashboard">
+	<div class="container-fluid">
+		<div class="content-area">
+			<div class="dashboard-content">
+				<div class="dashboard-header clearfix">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<h4><a href="#addcategory" class="btn btn-dark text-light">Add Propery Category</a></h4>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="breadcrumb-nav">
+								<ul>
+									<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+									<li class="active">Location Category</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+                    <div class="column col-sm-12">
+                        <div class="messages-box">
+                            <div class="title"><h3>Property Categories</h3></div>
+                            <div class="inner-box">
+
+                                <!--locations-->
+                                {% for category in categories %}
+                                <article class="message-box">
+                                    <div class="content-box">
+                                        <div class="name">{{category.name}}</div>
+                                        <!-- <span class="text date"><i class="la la-home"></i> {{location.city}}</span>
+                                        <div class="text date"><i class="la la-bank"></i> {{location.bank}}</div>
+                                        <div class="text date"><i class="la la-plane"></i> {{location.airport}}</div>
+                                        <div class="text date"><i class="la la-book"></i> {{location.school}}</div> -->
+                                    </div>
+                                </article>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row" id="addcategory">
+					<div class="column col-lg-12">
+						<div class="properties-box">
+							<div class="inner-container">
+								<div class="property-submit-form">
+									<form method="post"  enctype="multipart/form-data">
+										{% csrf_token %}
+										<div class="title">
+											<h3>Location Infomation</h3>
+										</div>
+										<div class="row">
+
+											{% for fields in form %}
+											<div class="form-group col-lg-5 col-md-8 col-sm-12">
+												<label>{{fields.label}}</label>
+												<!-- <input type="text" name="title" placeholder="Property Title" required> -->
+												{{fields}}
+											</div>
+											{% endfor %}
+										</div>
+										<div class="row justify-content-center">
+											<!-- Form Group -->
+											<div class="form-group col-lg-3 col-md-6 col-sm-12">
+												<button type="submit" class="theme-btn btn-style-one"> Submit
+													Property</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

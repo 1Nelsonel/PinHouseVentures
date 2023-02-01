@@ -1,0 +1,104 @@
+{% extends 'admin-main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="dashboard">
+	<div class="container-fluid">
+		<div class="content-area">
+			<div class="dashboard-content">
+				<div class="dashboard-header clearfix">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<h4><a href="#addlocation" class="btn btn-dark">Add Location</a></h4>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="breadcrumb-nav">
+								<ul>
+									<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+									<li class="active">Add Location Property</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="row">
+                    <div class="column col-sm-12">
+                        <div class="messages-box">
+                            <div class="title"><h3>Location and Facilities</h3></div>
+                            <div class="inner-box">
+
+                                <!--locations-->
+                                {% for location in locations %}
+                                <article class="message-box">
+                                    <div class="thumb-box">
+                                        <figure class="thumb">
+                                            <!-- <img src="images/resource/review-thumb-1.jpg" alt=""> -->
+                                            <div class="map-column">
+                                                <div class="map-outer">
+                                                    <!--Map Canvas-->
+                                                    
+                                                        <!-- <iframe src="{{property.location.mapLink}}" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen>
+                                                        </iframe> -->
+                                                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.0935088573!2d35.26921205!3d0.5117565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178101ae37f9f535%3A0xe2db337df0fc0820!2sEldoret!5e0!3m2!1sen!2ske!4v1671707830439!5m2!1sen!2ske" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                 -->
+												</div>
+                                            </div>
+                                        </figure>
+                                        
+                                    </div> 
+                                    <div class="content-box">
+                                        <div class="name">{{location.name}}</div>
+                                        <span class="text date"><i class="la la-home"></i> {{location.city}}</span>
+                                        <div class="text date"><i class="la la-bank"></i> {{location.bank}}</div>
+                                        <div class="text date"><i class="la la-plane"></i> {{location.airport}}</div>
+                                        <div class="text date"><i class="la la-book"></i> {{location.school}}</div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row" id="addlocation">
+					<div class="column col-lg-12">
+						<div class="properties-box">
+							<div class="inner-container">
+								<div class="property-submit-form">
+									<form method="post"  enctype="multipart/form-data">
+										{% csrf_token %}
+										<div class="title">
+											<h3>Location Infomation</h3>
+										</div>
+										<div class="row">
+
+											{% for fields in form %}
+											<div class="form-group col-lg-3 col-md-6 col-sm-12">
+												<label>{{fields.label}}</label>
+												<!-- <input type="text" name="title" placeholder="Property Title" required> -->
+												{{fields}}
+											</div>
+											{% endfor %}
+										</div>
+										<div class="row justify-content-center">
+											<!-- Form Group -->
+											<div class="form-group col-lg-3 col-md-6 col-sm-12">
+												<button type="submit" class="theme-btn btn-style-one"> Submit
+													Property</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -8,7 +8,8 @@ from .models import Property, Agent, Location, Propertycategory, Blog, Comment, 
 def home(request):
     properties = Property.objects.all()
     blogs = Blog.objects.all()
-    context = {'properties': properties, 'blogs': blogs}
+    agents = User.objects.all()
+    context = {'properties': properties, 'blogs': blogs,'agents':agents}
     return render(request, 'base/home.html', context)
 
 
@@ -25,7 +26,7 @@ def faqs(request):
 
 
 def agents(request):
-    agents = Agent.objects.all()
+    agents = User.objects.all()
     blogs = Blog.objects.all()
     context = {'agents': agents,'blogs': blogs}
     return render(request, 'base/agents.html', context)

@@ -6,7 +6,7 @@ from base.models import Property, Agent, Location, Propertycategory, Blog, Comme
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 
-from .forms import PropertyForm
+from .forms import PropertyForm,LocationForm,PropertycategoryForm
 
 
 # Create your views here.
@@ -31,7 +31,36 @@ def addProperty(request):
 
     return render(request, 'adminSection/submit-property.html', {'form': form})
 
+@login_required(login_url='login')
+def addLocation(request):
+    locations = Location.objects.all()
+    if request.method == 'POST':
+        form = LocationForm(request.POST)
+        if form.is_valid():
+            location = form.save()
+            location.save()
+            return redirect("add-location")
+    else:
+        form = LocationForm()
 
+    context = {'form': form, 'locations':locations}
+    return render(request, 'adminSection/add-location.html', context)
+
+
+@login_required(login_url='login')
+def addPropertyCategory(request):
+    categories = Propertycategory.objects.all()
+    if request.method == 'POST':
+        form = PropertycategoryForm(request.POST)
+        if form.is_valid():
+            productcategory = form.save()
+            productcategory.save()
+            return redirect("add-property-category")
+    else:
+        form = PropertycategoryForm()
+
+    context = {'form': form, 'categories':categories}
+    return render(request, 'adminSection/add-PropertyCategory.html', context)
 
 @login_required(login_url='login')
 def bookings(request):

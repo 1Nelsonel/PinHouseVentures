@@ -40,11 +40,11 @@
                     <div class="image-box">
                         <figure class="image agent">
                             <a href="{% url 'agent' agent.id %}">
-                            <img src="{{agent.image.url}}" alt=""></a>
+                            <img src="{{agent.profile.image.url}}" alt=""></a>
                         </figure>
                     </div>
                     <div class="info-box">
-                        <h4 class="name"><a href="{% url 'agent' agent.id %}">{{agent.name}}</a></h4>
+                        <h4 class="name"><a href="{% url 'agent' agent.id %}">{{agent.username}}</a></h4>
                         <span class="designation">Real Estate Agent</span>
                         <ul class="social-links">
                             <li><a href="#"><i class="la la-facebook-f"></i><span>Facebook</span></a></li>
