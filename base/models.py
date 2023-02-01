@@ -6,11 +6,15 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
 
+from django.db import models
+import uuid
+
 class Profile(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    description = models.TextField(max_length=500, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     
     def __str__(self):
         return self.user.username
@@ -25,6 +29,7 @@ class Profile(models.Model):
         instance.profile.save()
 
 class Agent(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, null=True)
     phone = models.CharField(max_length=20, null=True)
     image = models.ImageField(upload_to='agents', null=True)
@@ -41,6 +46,7 @@ class Agent(models.Model):
     
 
 class Location(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, null=True)
     city = models.CharField(max_length=100, null=True)
     bank = models.CharField(max_length=100, null=True)
@@ -57,6 +63,7 @@ class Location(models.Model):
         return self.name[0:50]
 
 class Propertycategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, null=True)
     updated = models.DateTimeField(auto_now=True, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -68,6 +75,7 @@ class Propertycategory(models.Model):
         return self.name[0:50]
 
 class Property(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100, null=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     size = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
@@ -103,6 +111,7 @@ class Property(models.Model):
         return self.title[0:50]
 
 class Blog(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200,null=True, blank=True)
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to='upload/blog_images', null=True)
@@ -117,6 +126,7 @@ class Blog(models.Model):
         return self.title[0:50]
 
 class Comment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=100,null=True, blank=True)
     email = models.EmailField(null=True, blank=True)

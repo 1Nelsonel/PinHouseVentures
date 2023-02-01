@@ -294,13 +294,13 @@
                         <div class="sidebar-title"><h2>About Agent</h2></div>
                         <div class="widget-content">
                             <div class="image-box">
-                                <figure class="image"><img src="{{property.agent.image.url}}" alt=""></figure>
+                                <figure class="image"><img src="{{property.agent.profile.image.url}}" alt=""></figure>
                             </div>
                             <div class="info-box">
-                                <h4 class="name">{{property.agent.name}}</h4>
+                                <h4 class="name">{{property.agent}}</h4>
                                 <span class="designation">Real Estate Agent</span>
                                 <ul class="contact-info">
-                                    <li><strong>Phone:</strong>{{property.agent.phone}}</li>
+                                    <li><strong>Phone:</strong>{{property.agent.profile.phone_number}}</li>
                                     <li><strong>Email:</strong> <a href="mailto:{{property.agent.email}}">{{property.agent.email}}</a></li>
                                     <!-- <li><strong>Address:</strong> 8542 El Paseo Grande New Yark</li> -->
                                 </ul>
@@ -316,7 +316,7 @@
                                 </div>
                                 <div class="btn-box">
                                     <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-one">VIEW PROFILE</a>
-                                    <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-six">MY PROPERTIES</a>
+                                    <!-- <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-six">MY PROPERTIES</a> -->
                                 </div>
                             </div>
                         </div>

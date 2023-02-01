@@ -41,7 +41,7 @@
             <div class="image-column col-lg-4 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image-box">
-                        <figure class="image "><img src="{{agent.image.url}}" alt=""></figure>
+                        <figure class="image "><img src="{{agent.profile.image.url}}" alt=""></figure>
                     </div>
                 </div>
             </div>
@@ -49,16 +49,16 @@
             <div class="content-column col-lg-8 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="about-agent">
-                        <h3 class="name">{{agent.name}}</h3>
+                        <h3 class="name">{{agent.username}}</h3>
                         <span class="designation">Real Estate Agent</span>
                         <div class="text">
-                            {{agent.description|linebreaks}}
+                            {{agent.profile.description|linebreaks}}
                         </div>
                         <div class="contact-info">
                             <div class="row">
                                 <div class="column col-xl-4 col-lg-12 col-md-12 col-sm-12">
                                     <ul>
-                                        <li><i class="la la-phone"></i><a href="tel:{{agent.phone}}">{{agent.phone}}</a></li>
+                                        <li><i class="la la-phone"></i><a href="tel:{{agent.phone}}">{{agent.profile.phone_number}}</a></li>
                                         <li><i class="la la-envelope-o"></i> <a href="mailto:{{agent.email}}">{{agent.email}}</a></li>
                                     </ul>
                                 </div>
@@ -119,7 +119,7 @@
                         <span class="featured">FEATURED</span> -->
                         <ul class="info clearfix">
                             <li><a href="{% url 'listing' property.id %}"><i class="la la-calendar-minus-o"></i>{{property.created|timesince}} :ago</a></li>
-                            <li><a href="#"><i class="la la-user-secret"></i>{{property.agent.name}}</a></li>
+                            <li><a href="#"><i class="la la-user-secret"></i>{{property.agent.username}}</a></li>
                         </ul>
                     </div>
                     <div class="lower-content">
@@ -133,7 +133,7 @@
                             <li><i class="flaticon-dimension"></i> {{property.size}} Sq-m</li>
                             <li><i class="flaticon-bed"></i> {{property.bedroom}} Bedrooms</li>
                             <li><i class="flaticon-car"></i> {{property.garage}} Garage</li>
-                            <!-- <li><i class="flaticon-bathtub"></i> 3 Bathroom</li> -->
+                            <li><i class="flaticon-bathtub"></i> {{property.bathroom}} Bathroom</li>
                         </ul>
                         <div class="property-price clearfix">
                             <div class="read-more"><a href="{% url 'listing' property.id %}" class="theme-btn">More Detail</a></div>
@@ -214,12 +214,12 @@
                     <div class="image-box">
                         <figure class="image agent">
                             <a href="{% url 'agent' agent.id %}">
-                                <img src="{{agent.image.url}}" alt="">
+                                <img src="{{agent.profile.image.url}}" alt="">
                             </a>
                         </figure>
                     </div>
                     <div class="info-box">
-                        <h4 class="name"><a href="{% url 'agent' agent.id %}">{{agent.name}}</a></h4>
+                        <h4 class="name"><a href="{% url 'agent' agent.id %}">{{agent.username}}</a></h4>
                         <span class="designation">Real Estate Agent</span>
                         <ul class="social-links">
                             <li><a href="#"><i class="la la-facebook-f"></i><span>Facebook</span></a></li>

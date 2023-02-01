@@ -15,19 +15,22 @@ def dashboard(request):
     property_count = Property.objects.all().count()
     context = {'property_count': property_count}
     return render(request, 'adminSection/dashboard.html', context)
-
+    
 
 @login_required(login_url='login')
 def addProperty(request):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            property = form.save(commit=False)
+            property.agent = request.user
+            property.save()
             return redirect("my-property")
     else:
         form = PropertyForm()
 
     return render(request, 'adminSection/submit-property.html', {'form': form})
+
 
 
 @login_required(login_url='login')

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
-from .models import Property, Agent, Location, Propertycategory, Blog, Comment
+from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User
 
 # Create your views here.
 
@@ -32,9 +32,9 @@ def agents(request):
 
 
 def agent(request, pk):
-    agent = Agent.objects.get(id=pk)
+    agent = User.objects.get(id=pk)
     properties = Property.objects.filter(agent=agent)
-    agents = Agent.objects.all()
+    agents = User.objects.all()
     blogs = Blog.objects.all()
     context = {'agent': agent, 'properties': properties, 'agents': agents,'blogs': blogs}
     return render(request, 'base/agent.html', context)
@@ -47,12 +47,12 @@ def listings(request):
         Q(title__icontains=q) |
         Q(location__name__icontains=q) |
         Q(category__name__icontains=q) |
-        Q(agent__name__icontains=q)
+        Q(agent__username__icontains=q)
     )
-    agents = Agent.objects.all()
+    users = User.objects.all()
     blogs = Blog.objects.all()
     categories = Propertycategory.objects.all()
-    context = {'properties': properties,'agents': agents,'categories': categories,'blogs':blogs}
+    context = {'properties': properties,'users': users,'categories': categories,'blogs':blogs}
     return render(request, 'base/listings.html', context)
 
 

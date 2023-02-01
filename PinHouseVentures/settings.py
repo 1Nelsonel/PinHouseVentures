@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'PinHouseVentures.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PinHouse', 
+        'NAME': 'PinHouse_Ventures', 
         'USER': 'postgres', 
         'PASSWORD': '0101',
         'HOST': '127.0.0.1', 

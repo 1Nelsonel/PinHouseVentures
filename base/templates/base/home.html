@@ -187,7 +187,7 @@
                         <span class="featured">FEATURED</span> -->
                         <ul class="info clearfix">
                             <li><a href="{% url 'listing' property.id %}"><i class="la la-calendar-minus-o"></i>{{property.created|timesince}} :ago</a></li>
-                            <li><a href="agent-detail.html"><i class="la la-user-secret"></i>{{property.agent.name}}</a></li>
+                            <li><a href="agent-detail.html"><i class="la la-user-secret"></i>{{property.agent.username}}</a></li>
                         </ul>
                     </div>
                     <div class="lower-content">

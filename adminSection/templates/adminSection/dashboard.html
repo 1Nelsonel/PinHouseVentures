@@ -23,12 +23,19 @@
 					</div>
 				</div>
 
-				<div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-							aria-hidden="true">×</span></button>
-					<strong>You Have logged in successfully!!!</strong>
+				{% if messages %}
+				<div class="alert message " role="alert">
+					{% for message in messages %}
+					<button type="button" class="close p-3" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span></button>
+					<strong>
+						<li class="{{ message.tags }} p-3">{{ message }}</li>
+					</strong>
+					{% endfor %}
 				</div>
+				{% endif %}
 
+				
 				<div class="row">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="ui-item bg-success">
@@ -329,7 +336,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </div>

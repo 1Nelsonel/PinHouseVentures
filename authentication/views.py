@@ -18,8 +18,8 @@ def registerPage(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            messages.success(request, 'User registered')
-            return redirect("dashboard")
+            messages.success(request, 'User registered, Please, update your profile')
+            return redirect("my-profile")
         else:
             messages.error(request, 'Failed, Please Try Again.')
             
@@ -33,6 +33,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, 'You Have successfull login')
             return redirect("dashboard")
         else:
             return render(request, 'authentication/login.html', {"message": "Invalid credentials"})
