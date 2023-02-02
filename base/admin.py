@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Agent,Location,Property,Propertycategory,Blog,Comment,Profile
+from .models import Agent,Location,Property,Propertycategory,Blog,Comment,Profile,PropertyComment
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.models import User
 
@@ -10,6 +10,7 @@ admin.site.register(Propertycategory)
 admin.site.register(Blog)
 admin.site.register(Comment)
 admin.site.register(Profile)
+admin.site.register(PropertyComment)
 
 class ProfileInLine(admin.StackedInline):
     model = Profile

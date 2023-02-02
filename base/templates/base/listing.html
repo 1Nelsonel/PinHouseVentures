@@ -5,7 +5,6 @@
 {% load static %}
 
 <style>
-    
     .imageTop img {
         width: 100% !important;
         height: 500px !important;
@@ -19,7 +18,7 @@
         /* object-fit: cover !important; */
         display: grid !important;
     }
-    
+
     .post-thumb img {
         width: 100% !important;
         height: 90px !important;
@@ -71,22 +70,27 @@
                     <div class="upper-box">
                         <div class="carousel-outer">
                             <ul class="imageTop image-carousel owl-carousel owl-theme">
-                                <li><a href="{{property.imageOne.url}}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{{property.imageOne.url}}" alt=""></a></li>
+                                <li><a href="{{property.imageOne.url}}" class="lightbox-image"
+                                        title="Image Caption Here">
+                                        <img src="{{property.imageOne.url}}" alt=""></a></li>
 
-                                <li><a href="{{property.imageTwo.url}}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{{property.imageTwo.url}}" alt=""></a></li>
+                                <li><a href="{{property.imageTwo.url}}" class="lightbox-image"
+                                        title="Image Caption Here">
+                                        <img src="{{property.imageTwo.url}}" alt=""></a></li>
 
-                                <li><a href="{{property.imageThree.url}}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{{property.imageThree.url}}" alt=""></a></li>
+                                <li><a href="{{property.imageThree.url}}" class="lightbox-image"
+                                        title="Image Caption Here">
+                                        <img src="{{property.imageThree.url}}" alt=""></a></li>
 
-                                <li><a href="{{property.imageFour.url}}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{{property.imageFour.url}}" alt=""></a></li>
+                                <li><a href="{{property.imageFour.url}}" class="lightbox-image"
+                                        title="Image Caption Here">
+                                        <img src="{{property.imageFour.url}}" alt=""></a></li>
 
-                                <li><a href="{{property.imageFive.url}}" class="lightbox-image" title="Image Caption Here">
-                                    <img src="{{property.imageFive.url}}" alt=""></a></li>
+                                <li><a href="{{property.imageFive.url}}" class="lightbox-image"
+                                        title="Image Caption Here">
+                                        <img src="{{property.imageFive.url}}" alt=""></a></li>
                             </ul>
-                            
+
                             <ul class="imageDown thumbs-carousel owl-carousel owl-theme">
                                 <li><img src="{{property.imageOne.url}}" alt=""></li>
                                 <li><img src="{{property.imageTwo.url}}" alt=""></li>
@@ -100,7 +104,7 @@
                     <div class="lower-content">
                         <h4>Description</h4>
                         <p>
-                            <blockquote>{{property.description |linebreaks}}</blockquote>
+                        <blockquote>{{property.description |linebreaks}}</blockquote>
                         </p>
                     </div>
 
@@ -149,7 +153,7 @@
                             {% if property.own_compound %}
                             <li>Own-Compound</li>
                             {% endif %}
-                            
+
                         </ul>
                     </div>
 
@@ -196,10 +200,13 @@
                             <div class="map-column">
                                 <div class="map-outer">
                                     <!--Map Canvas-->
-                                    
-                                        <!-- <iframe src="{{property.location.mapLink}}" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen>
+
+                                    <!-- <iframe src="{{property.location.mapLink}}" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen>
                                         </iframe> -->
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.0935088573!2d35.26921205!3d0.5117565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178101ae37f9f535%3A0xe2db337df0fc0820!2sEldoret!5e0!3m2!1sen!2ske!4v1671707830439!5m2!1sen!2ske" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127669.0935088573!2d35.26921205!3d0.5117565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178101ae37f9f535%3A0xe2db337df0fc0820!2sEldoret!5e0!3m2!1sen!2ske!4v1671707830439!5m2!1sen!2ske"
+                                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -211,73 +218,65 @@
                         <div class="reviews-container">
                             <h4>Reviews For Costomer</h4>
                             <!--Reviews-->
+                            {% for comment in propertycomments %}
                             <article class="review-box">
                                 <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-1.jpg' %}" alt=""></figure>
-                                    <a href="#" class="reply-btn">Reply Now</a>
+                                    <figure class="thumb"><img
+                                            src="{% static 'assets/images/resource/review-thumb-1.jpg' %}" alt="">
+                                    </figure>
                                 </div>
                                 <div class="content-box">
-                                    <div class="name">Monija Moro</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
-                                </div>
-                            </article>
-                            
-                            <!--Reviews-->
-                            <article class="review-box reply">
-                                <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-2.jpg' %}" alt=""></figure>
-                                    <a href="#" class="reply-btn theme-btn">Reply Now</a>
-                                </div>
-                                <div class="content-box">
-                                    <div class="name">Mibano Rests</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
-                                </div>
-                            </article>
+                                    <div class="name">{{comment.name}}</div>
+                                    <span class="date"><i class="la la-calendar"></i> {{comment.created_at|timesince}}: Ago</span>
+                                    <div class="rating">
+                                   
+                                        {% if comment.rating >= 5 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 4 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 3 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 2 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 1 %}
+                                        <span class="la la-star"></span>
+                                      {% endif %}
+                                    </div>
 
-                            <!--Reviews-->
-                            <article class="review-box">
-                                <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-3.jpg' %}" alt=""></figure>
-                                    <a href="#" class="reply-btn theme-btn">Reply Now</a>
-                                </div>
-                                <div class="content-box">
-                                    <div class="name">Cojari Barna</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star-o"></span><span class="la la-star-o"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
+                                    <div class="text">{{comment.body}}</div>
                                 </div>
                             </article>
+                            {% endfor %}
                         </div>
                     </div>
 
-                     <!-- Review Comment Form -->
-                    <div class="review-comment-form"> 
+                    <!-- Review Comment Form -->
+                    <div class="review-comment-form">
                         <h4>Leave A Review</h4>
-                        <form method="post" action="http://expert-themes.com/html/willies/contact.html">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="row">
+                                {% for field in commentform %}
                                 <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                    <input type="text" name="username" placeholder="Full Name" required>
+                                    <label class="fw-bolder">{{field.label}}:</label>
+                                   
+                                    {{field}}
                                 </div>
-                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                    <input type="text" name="number" placeholder="Email Address" required>
-                                </div>
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                    <textarea name="message" placeholder="Massage"></textarea>
-                                </div>
-                                <div class="form-group col-lg-6 col-md-6 col-sm-6">
-                                    <div class="rating-box">
-                                        <div class="text"> Your Rating:</div>
-                                        <div class="rating"><a href="#"><span class="la la-star-o"></span></a><a href="#"><span class="la la-star-o"></span></a><a href="#"><span class="la la-star-o"></span></a><a href="#"><span class="la la-star-o"></span></a><a href="#"><span class="la la-star-o"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
 
                                 <div class="form-group col-lg-6 col-md-6 col-sm-6 text-right">
-                                    <button class="theme-btn btn-style-one" type="submit" name="submit-form">Submit now</button>
+                                    <button class="theme-btn btn-style-one" type="submit" name="submit-form">Submit
+                                        now</button>
                                 </div>
                             </div>
                         </form>
@@ -291,7 +290,9 @@
 
                     <!-- Agent Widget -->
                     <div class="sidebar-widget agent-widget">
-                        <div class="sidebar-title"><h2>About Agent</h2></div>
+                        <div class="sidebar-title">
+                            <h2>About Agent</h2>
+                        </div>
                         <div class="widget-content">
                             <div class="image-box">
                                 <figure class="image"><img src="{{property.agent.profile.image.url}}" alt=""></figure>
@@ -301,7 +302,8 @@
                                 <span class="designation">Real Estate Agent</span>
                                 <ul class="contact-info">
                                     <li><strong>Phone:</strong>{{property.agent.profile.phone_number}}</li>
-                                    <li><strong>Email:</strong> <a href="mailto:{{property.agent.email}}">{{property.agent.email}}</a></li>
+                                    <li><strong>Email:</strong> <a
+                                            href="mailto:{{property.agent.email}}">{{property.agent.email}}</a></li>
                                     <!-- <li><strong>Address:</strong> 8542 El Paseo Grande New Yark</li> -->
                                 </ul>
                                 <div class="follow-us">
@@ -315,7 +317,8 @@
                                     </ul>
                                 </div>
                                 <div class="btn-box">
-                                    <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-one">VIEW PROFILE</a>
+                                    <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-one">VIEW
+                                        PROFILE</a>
                                     <!-- <a href="{% url 'agent' property.agent.id %}" class="theme-btn btn-style-six">MY PROPERTIES</a> -->
                                 </div>
                             </div>
@@ -324,7 +327,9 @@
 
                     <!-- Agent Form Widget -->
                     <div class="sidebar-widget agent-from-widget">
-                        <div class="sidebar-title"><h2>Contact Agent</h2></div>
+                        <div class="sidebar-title">
+                            <h2>Contact Agent</h2>
+                        </div>
                         <div class="widget-content">
                             <div class="agent-form">
                                 <form method="post" action="http://expert-themes.com/html/willies/contact.html">
@@ -341,7 +346,8 @@
                                         <textarea name="message" placeholder="Massage"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">Submit now</button>
+                                        <button class="theme-btn btn-style-one" type="submit" name="submit-form">Submit
+                                            now</button>
                                     </div>
                                 </form>
                             </div>
@@ -350,17 +356,22 @@
 
                     <!-- Categories -->
                     <div class="sidebar-widget categories">
-                        <div class="sidebar-title"><h2>Category Properties</h2></div>
+                        <div class="sidebar-title">
+                            <h2>Category Properties</h2>
+                        </div>
                         <ul class="cat-list">
                             {% for category in categories %}
-                            <li><a href="{% url 'listings' %}">{{category.name}} <span>{{category.property_set.all.count}}</span></a></li>
+                            <li><a href="{% url 'listings' %}">{{category.name}}
+                                    <span>{{category.property_set.all.count}}</span></a></li>
                             {% endfor %}
                         </ul>
                     </div>
 
                     <!-- Recent Blogs -->
                     <div class="sidebar-widget recent-properties">
-                        <div class="sidebar-title"><h2>Recent Blogs</h2></div>
+                        <div class="sidebar-title">
+                            <h2>Recent Blogs</h2>
+                        </div>
                         <div class="widget-content">
                             <!-- post -->
                             {% for blog in blogs %}
@@ -379,7 +390,7 @@
                         </div>
                     </div>
 
-                               
+
                 </aside>
             </div>
         </div>
@@ -393,14 +404,38 @@
         <div class="sponsors-outer">
             <!--Sponsors Carousel-->
             <ul class="sponsors-carousel owl-carousel owl-theme">
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}" alt=""></a></figure></li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}"
+                                alt=""></a></figure>
+                </li>
             </ul>
         </div>
     </div>
@@ -408,7 +443,7 @@
 <!--End Clients Section-->
 
 <!-- script -->
-<script src="{% static 'assets/js/jquery.js' %}"></script> 
+<script src="{% static 'assets/js/jquery.js' %}"></script>
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/jquery-ui.js' %}"></script>

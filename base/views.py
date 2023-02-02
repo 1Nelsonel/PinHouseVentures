@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User
-from .forms import CommentForm
+from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User,PropertyComment
+from .forms import CommentForm,PropertyCommentForm
 
 # Create your views here.
 
@@ -10,7 +10,7 @@ def home(request):
     properties = Property.objects.all()
     blogs = Blog.objects.all()
     agents = User.objects.all()
-    context = {'properties': properties, 'blogs': blogs,'agents':agents}
+    context = {'properties': properties, 'blogs': blogs, 'agents': agents}
     return render(request, 'base/home.html', context)
 
 
@@ -29,7 +29,7 @@ def faqs(request):
 def agents(request):
     agents = User.objects.all()
     blogs = Blog.objects.all()
-    context = {'agents': agents,'blogs': blogs}
+    context = {'agents': agents, 'blogs': blogs}
     return render(request, 'base/agents.html', context)
 
 
@@ -38,7 +38,8 @@ def agent(request, pk):
     properties = Property.objects.filter(agent=agent)
     agents = User.objects.all()
     blogs = Blog.objects.all()
-    context = {'agent': agent, 'properties': properties, 'agents': agents,'blogs': blogs}
+    context = {'agent': agent, 'properties': properties,
+               'agents': agents, 'blogs': blogs}
     return render(request, 'base/agent.html', context)
 
 
@@ -54,7 +55,8 @@ def listings(request):
     users = User.objects.all()
     blogs = Blog.objects.all()
     categories = Propertycategory.objects.all()
-    context = {'properties': properties,'users': users,'categories': categories,'blogs':blogs}
+    context = {'properties': properties, 'users': users,
+               'categories': categories, 'blogs': blogs}
     return render(request, 'base/listings.html', context)
 
 
@@ -63,8 +65,23 @@ def listing(request, pk):
     properties = Property.objects.all()
     categories = Propertycategory.objects.all()
     blogs = Blog.objects.all()
-    context = {'property': property,
-               'properties': properties, 'categories': categories,'blogs':blogs}
+
+    # comments
+    propertycomments = PropertyComment.objects.all()
+
+    # add comment
+    if request.method == 'POST':
+        form = PropertyCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.property = property
+            comment.save()
+            return redirect("listing", pk=property.id)
+    else:
+        commentform = PropertyCommentForm()
+
+    context = {'property': property,'propertycomments':propertycomments,'commentform':commentform,
+               'properties': properties, 'categories': categories, 'blogs': blogs}
     return render(request, 'base/listing.html', context)
 
 
@@ -89,6 +106,9 @@ def blog(request, pk):
     properties = Property.objects.all()
     categories = Propertycategory.objects.all()
 
+    # comments
+    comments = Comment.objects.all()
+
     # add comment
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -96,12 +116,12 @@ def blog(request, pk):
             comment = form.save(commit=False)
             comment.blog = blog
             comment.save()
-            return redirect("blog", pk=blog.pk)
+            return redirect("blog", pk=blog.id)
     else:
         form = CommentForm()
 
-    context = {'blog': blog, 'blogs': blogs,'form':form,
-               'properties': properties, 'categories': categories}
+    context = {'blog': blog, 'blogs': blogs, 'form': form,
+               'properties': properties, 'categories': categories, 'comments': comments}
     return render(request, 'base/blog.html', context)
 
 

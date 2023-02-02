@@ -42,11 +42,11 @@
                         </div>
                     </div>
 
-                    <div class="lower-content">
+                    <div class="lower-content clearfix">
                         <ul class="info">
                             <li>by <span>{{blog.host}}</span></li>
-                            <li>{{blog.creates_at|timesince}} :ago</li>
-                            <li>COMMENTS 0</li>
+                            <li>{{blog.created_at|timesince}} :ago</li>
+                            <li> (0) COMMENTS</li>
                         </ul>
                         <h2>{{blog.title}}</h2>
                         <p>{{blog.body|linebreaks}}</p>
@@ -55,91 +55,55 @@
                     </div>
 
                     <!-- Post Share Option -->
-                    <div class="post-share-options clearfix">
-                        <div class="pull-left clearfix">
-                            <span class="icon la la-tags"></span>
-                            <ul class="tags">
-                                <li><a href="#">Apartment,</a>,</li>
-                                <li><a href="#">Condo,</a>,</li>
-                                <li><a href="#">Multi Family,</a></li>
-                                <li><a href="#">Villa</a></li>
-                            </ul>
-                        </div>
-                        <div class="pull-right clearfix">
-                            <ul class="social-icon clearfix">
-                                <li><a href="#"><i class="la la-facebook"></i></a></li>
-                                <li><a href="#"><i class="la la-twitter"></i></a></li>
-                                <li><a href="#"><i class="la la-google-plus"></i></a></li>
-                                <li><a href="#"><i class="la la-dribbble"></i></a></li>
-                                <li><a href="#"><i class="la la-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    
 
                     <!-- Review Box -->
-                    <div class="review-area">
+                    <div class="review-area clearfix">
                         <!--Reviews Container-->
                         <div class="reviews-container">
                             <h4>Reviews For Costomer</h4>
                             <!--Reviews-->
+                            {% for comment in comments %}
                             <article class="review-box">
                                 <div class="thumb-box">
                                     <figure class="thumb"><img
-                                            src="{% static 'assets/images/resource/review-thumb-1.jpg' %}" alt="">
+                                            src="{% static 'assets/images/resource/default_user.png' %}" alt="">
                                     </figure>
-                                    <a href="#" class="reply-btn">Reply Now</a>
+                                    
                                 </div>
                                 <div class="content-box">
-                                    <div class="name">Monija Moro</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span
-                                            class="la la-star"></span><span class="la la-star"></span><span
-                                            class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
-                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
-                                        voluptatem!.</div>
-                                </div>
-                            </article>
+                                    <div class="name">{{comment.name}}</div>
+                                    <span class="date"><i class="la la-calendar"></i> {{comment.created_at | timesince}}: Ago</span>
+                                    <div class="rating">
+                                   
+                                        {% if comment.rating >= 5 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 4 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 3 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 2 %}
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                      {% elif comment.rating >= 1 %}
+                                        <span class="la la-star"></span>
+                                      {% endif %}
+                                    </div>
 
-                            <!--Reviews-->
-                            <article class="review-box reply">
-                                <div class="thumb-box">
-                                    <figure class="thumb"><img
-                                            src="{% static 'assets/images/resource/review-thumb-2.jpg' %}" alt="">
-                                    </figure>
-                                    <a href="#" class="reply-btn theme-btn">Reply Now</a>
-                                </div>
-                                <div class="content-box">
-                                    <div class="name">Mibano Rests</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span
-                                            class="la la-star"></span><span class="la la-star"></span><span
-                                            class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
-                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
-                                        voluptatem!.</div>
+                                    <div class="text">{{comment.body}}</div>
                                 </div>
                             </article>
-
-                            <!--Reviews-->
-                            <article class="review-box">
-                                <div class="thumb-box">
-                                    <figure class="thumb"><img
-                                            src="{% static 'assets/images/resource/review-thumb-3.jpg' %}" alt="">
-                                    </figure>
-                                    <a href="#" class="reply-btn theme-btn">Reply Now</a>
-                                </div>
-                                <div class="content-box">
-                                    <div class="name">Cojari Barna</div>
-                                    <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span
-                                            class="la la-star"></span><span class="la la-star"></span><span
-                                            class="la la-star-o"></span><span class="la la-star-o"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
-                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
-                                        voluptatem!.</div>
-                                </div>
-                            </article>
+                            {% endfor %}
+                           
                         </div>
                     </div>
 

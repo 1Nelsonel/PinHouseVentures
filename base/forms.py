@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from base.models import Comment
+from base.models import Comment,PropertyComment
 from django import forms
 
 
@@ -8,4 +8,13 @@ class CommentForm(ModelForm):
         rating = forms.IntegerField(min_value=0, max_value=5, help_text="Max value is 5, min value is 0")
 
         model = Comment
+        fields = ['name','email','rating','body']
+
+class PropertyCommentForm(ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
+    rating = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter rating between 0 to 5'}))
+
+    class Meta:
+        model = PropertyComment
         fields = ['name','email','rating','body']
