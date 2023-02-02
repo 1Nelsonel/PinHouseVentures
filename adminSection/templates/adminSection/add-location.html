@@ -27,11 +27,11 @@
                     <div class="column col-sm-12">
                         <div class="messages-box">
                             <div class="title"><h3>Location and Facilities</h3></div>
-                            <div class="inner-box">
+                            <div class="row">
 
                                 <!--locations-->
                                 {% for location in locations %}
-                                <article class="message-box">
+                                <article class="col-sm-6 p-3">
                                     <div class="thumb-box">
                                         <figure class="thumb">
                                             <!-- <img src="images/resource/review-thumb-1.jpg" alt=""> -->
@@ -49,11 +49,11 @@
                                         
                                     </div> 
                                     <div class="content-box">
-                                        <div class="name">{{location.name}}</div>
-                                        <span class="text date"><i class="la la-home"></i> {{location.city}}</span>
-                                        <div class="text date"><i class="la la-bank"></i> {{location.bank}}</div>
-                                        <div class="text date"><i class="la la-plane"></i> {{location.airport}}</div>
-                                        <div class="text date"><i class="la la-book"></i> {{location.school}}</div>
+                                        <h4 class="text-success p-2"><div class="name">{{location.name}}</div></h4>
+                                        <span class="text date"><i class="la la-home text-success"></i> {{location.city}}</span>
+                                        <div class="text date"><i class="la la-bank text-success"></i> {{location.bank}}</div>
+                                        <div class="text date"><i class="la la-plane text-success"></i> {{location.airport}}</div>
+                                        <div class="text date"><i class="la la-book text-success"></i> {{location.school}}</div>
                                     </div>
                                 </article>
                                 {% endfor %}

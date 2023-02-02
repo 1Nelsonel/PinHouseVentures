@@ -4,15 +4,13 @@
 
 {% load static %}
 
-<style>   
-    
+<style>
     .blog img {
         width: 100% !important;
         height: 450px !important;
         /* object-fit: cover !important; */
         display: grid !important;
     }
-    
 </style>
 
 <!--Page Title-->
@@ -53,7 +51,7 @@
                         <h2>{{blog.title}}</h2>
                         <p>{{blog.body|linebreaks}}</p>
                         <!-- <blockquote>{{blog.body|linebreaks}}</blockquote> -->
-                        
+
                     </div>
 
                     <!-- Post Share Option -->
@@ -86,65 +84,89 @@
                             <!--Reviews-->
                             <article class="review-box">
                                 <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-1.jpg' %}" alt=""></figure>
+                                    <figure class="thumb"><img
+                                            src="{% static 'assets/images/resource/review-thumb-1.jpg' %}" alt="">
+                                    </figure>
                                     <a href="#" class="reply-btn">Reply Now</a>
                                 </div>
                                 <div class="content-box">
                                     <div class="name">Monija Moro</div>
                                     <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
+                                    <div class="rating"><span class="la la-star"></span><span
+                                            class="la la-star"></span><span class="la la-star"></span><span
+                                            class="la la-star"></span><span class="la la-star"></span></div>
+                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
+                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
+                                        voluptatem!.</div>
                                 </div>
                             </article>
-                            
+
                             <!--Reviews-->
                             <article class="review-box reply">
                                 <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-2.jpg' %}" alt=""></figure>
+                                    <figure class="thumb"><img
+                                            src="{% static 'assets/images/resource/review-thumb-2.jpg' %}" alt="">
+                                    </figure>
                                     <a href="#" class="reply-btn theme-btn">Reply Now</a>
                                 </div>
                                 <div class="content-box">
                                     <div class="name">Mibano Rests</div>
                                     <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
+                                    <div class="rating"><span class="la la-star"></span><span
+                                            class="la la-star"></span><span class="la la-star"></span><span
+                                            class="la la-star"></span><span class="la la-star"></span></div>
+                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
+                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
+                                        voluptatem!.</div>
                                 </div>
                             </article>
 
                             <!--Reviews-->
                             <article class="review-box">
                                 <div class="thumb-box">
-                                    <figure class="thumb"><img src="{% static 'assets/images/resource/review-thumb-3.jpg' %}" alt=""></figure>
+                                    <figure class="thumb"><img
+                                            src="{% static 'assets/images/resource/review-thumb-3.jpg' %}" alt="">
+                                    </figure>
                                     <a href="#" class="reply-btn theme-btn">Reply Now</a>
                                 </div>
                                 <div class="content-box">
                                     <div class="name">Cojari Barna</div>
                                     <span class="date"><i class="la la-calendar"></i> 5 December, 2017</span>
-                                    <div class="rating"><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star"></span><span class="la la-star-o"></span><span class="la la-star-o"></span></div>
-                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam voluptatem!.</div>
+                                    <div class="rating"><span class="la la-star"></span><span
+                                            class="la la-star"></span><span class="la la-star"></span><span
+                                            class="la la-star-o"></span><span class="la la-star-o"></span></div>
+                                    <div class="text">Accusantium aut, consequatur, culpa dolorum est facilis illo
+                                        magnam numquam officia omnis qui recusandae sit, tempora ullam unde velit veniam
+                                        voluptatem!.</div>
                                 </div>
                             </article>
                         </div>
                     </div>
 
-                     <!-- Review Comment Form -->
-                    <div class="review-comment-form"> 
+                    <!-- Review Comment Form -->
+                    <div class="review-comment-form">
                         <h4>Leave A Review</h4>
-                        <form method="post" action="http://expert-themes.com/html/willies/contact.html">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="row">
-                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                                    <input type="text" name="username" placeholder="Full Name" required>
+                                {% for fields in form %}
+                                <div class="form-group col-lg-6 col-md-8 col-sm-12">
+                                    <label>{{fields.label}}</label>
+                                    <!-- <input type="text" name="title" placeholder="Property Title" required> -->
+                                    {{fields}}
+                                    <p class="text-dark">{{ fields.help_text }}</p>
                                 </div>
-                                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                                {% endfor %}
+                                <!-- <div class="form-group col-lg-6 col-md-12 col-sm-12">
                                     <input type="text" name="number" placeholder="Email Address" required>
                                 </div>
                                 <div class="form-group col-lg-12 col-md-12 col-sm-12">
                                     <textarea name="message" placeholder="Massage"></textarea>
-                                </div>
+                                </div> -->
 
-                                <div class="form-group col-lg-12 col-md-12 col-sm-12 text-right">
+                                <div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
                                     <button class="theme-btn btn-style-one" type="submit" name="submit-form">Post Review</button>
-                                </div>
+                                </div> 
                             </div>
                         </form>
                     </div>
@@ -163,30 +185,34 @@
                             <option>
                                 <ul class="dropdown">
                                     <li>
-                                        <a href="{% url 'blog' blog.id %}">{{blog.title}}</a> 
+                                        <a href="{% url 'blog' blog.id %}">{{blog.title}}</a>
                                     </li>
                                 </ul>
-                                
+
                             </option>
                             {% endfor %}
-                            
+
                         </select>
                     </div>
 
-                     <!-- Categories -->
-                     <div class="sidebar-widget categories">
-                        <div class="sidebar-title"><h2>Category Properties</h2></div>
+                    <!-- Categories -->
+                    <div class="sidebar-widget categories">
+                        <div class="sidebar-title">
+                            <h2>Category Properties</h2>
+                        </div>
                         <ul class="cat-list">
                             {% for category in categories %}
                             <li><a href="#">{{category.name}}<span>{{category.property_set.all.count}}</span></a></li>
                             {% endfor %}
-                           
+
                         </ul>
                     </div>
 
                     <!-- Recent Properties -->
                     <div class="sidebar-widget recent-properties">
-                        <div class="sidebar-title"><h2>Recent Properties</h2></div>
+                        <div class="sidebar-title">
+                            <h2>Recent Properties</h2>
+                        </div>
                         <div class="widget-content">
                             <!-- post -->
                             {% for property in properties %}
@@ -203,7 +229,7 @@
                             </article>
                             {% endfor %}
                         </div>
-                    </div>            
+                    </div>
                 </aside>
             </div>
         </div>
@@ -217,18 +243,42 @@
         <div class="sponsors-outer">
             <!--Sponsors Carousel-->
             <ul class="sponsors-carousel owl-carousel owl-theme">
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}" alt=""></a></figure></li>
-                <li class="slide-item"><figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}" alt=""></a></figure></li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/1.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/2.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/3.png' %}"
+                                alt=""></a></figure>
+                </li>
+                <li class="slide-item">
+                    <figure class="image-box"><a href="#"><img src="{% static 'assets/images/clients/4.png' %}"
+                                alt=""></a></figure>
+                </li>
             </ul>
         </div>
     </div>
 </section>
 <!--End Clients Section-->
 
-{% endblock %}
+{% endblock %}form

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Q
 from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User
+from .forms import CommentForm
 
 # Create your views here.
 
@@ -87,7 +88,19 @@ def blog(request, pk):
     blogs = Blog.objects.all()
     properties = Property.objects.all()
     categories = Propertycategory.objects.all()
-    context = {'blog': blog, 'blogs': blogs,
+
+    # add comment
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blog = blog
+            comment.save()
+            return redirect("blog", pk=blog.pk)
+    else:
+        form = CommentForm()
+
+    context = {'blog': blog, 'blogs': blogs,'form':form,
                'properties': properties, 'categories': categories}
     return render(request, 'base/blog.html', context)
 

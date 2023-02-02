@@ -8,6 +8,8 @@ from django.conf import settings
 
 from django.db import models
 import uuid
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 
 class Profile(models.Model):
@@ -132,6 +134,7 @@ class Blog(models.Model):
     body = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    
 
     class Meta:
         ordering = ['-updated_at', '-created_at']
@@ -147,6 +150,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     body = models.TextField(null=True, blank=True)
+    rating = models.PositiveSmallIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
