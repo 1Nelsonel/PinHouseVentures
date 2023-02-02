@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db import models
 import uuid
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import RegexValidator
 
 
 
@@ -44,6 +45,40 @@ class Agent(models.Model):
 
     class Meta:
         ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.name[0:50]
+
+# class AgentMessage(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     agent = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name='comments')
+#     phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
+#     full_name = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True)     
+#     email = models.EmailField(null=True, blank=True)
+#     body = models.TextField(null=True, blank=True)
+#     phone_number= models.TextField(null=True, blank=True)
+#     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+#     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+#     class Meta:
+#         ordering = ['-updated_at', '-created_at']
+
+#     def __str__(self):
+#         return self.name[0:50]
+    
+class MessageAgent(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    agent = models.ForeignKey(User, on_delete=models.CASCADE, related_name='useername')
+    full_name = models.CharField(max_length=100, null=True, blank=True)
+    phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
+    phone_number = models.CharField(validators = [phoneNumberRegex], max_length = 16, null=True, blank=True)     
+    email = models.EmailField(null=True, blank=True)
+    body = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-updated_at', '-created_at']
 
     def __str__(self):
         return self.name[0:50]

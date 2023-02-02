@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from base.models import Property, Agent, Location, Propertycategory, Blog, Comment, Profile, User
+from base.models import Property, Agent, Location, Propertycategory, Blog, Comment, Profile, User,PropertyComment
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 
@@ -12,8 +12,12 @@ from .forms import PropertyForm,LocationForm,PropertycategoryForm
 # Create your views here.
 @login_required(login_url='login')
 def dashboard(request):
+    # counts
     property_count = Property.objects.all().count()
-    context = {'property_count': property_count}
+    review_count = PropertyComment.objects.all().count()
+    # comments
+    propertycomments = PropertyComment.objects.all()
+    context = {'property_count': property_count,'review_count':review_count,'propertycomments':propertycomments}
     return render(request, 'adminSection/dashboard.html', context)
     
 

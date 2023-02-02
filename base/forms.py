@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from base.models import Comment,PropertyComment
+from base.models import Comment,PropertyComment,MessageAgent
 from django import forms
 
 
@@ -18,3 +18,12 @@ class PropertyCommentForm(ModelForm):
     class Meta:
         model = PropertyComment
         fields = ['name','email','rating','body']
+
+class MessageAgentForm(ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
+   
+
+    class Meta:
+        model = PropertyComment
+        fields = ['name','email','body']

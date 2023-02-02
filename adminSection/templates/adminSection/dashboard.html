@@ -62,7 +62,7 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="ui-item bg-active">
 							<div class="left">
-								<h4>786</h4>
+								<h4>{{review_count}}</h4>
 								<p>Reviews</p>
 							</div>
 							<div class="right">
@@ -97,8 +97,9 @@
 									<!-- Tab Active tab-->
 									<div class="tab active-tab" id="pending">
 										<div class="comments-area">
+											  
 											<!--comment-->
-											<article class="message-box">
+											<!-- <article class="message-box">
 												<div class="thumb-box">
 													<figure class="thumb"><img src="images/resource/review-thumb-1.jpg"
 															alt=""></figure>
@@ -112,10 +113,10 @@
 														facilis illo magnam numquam officia omnis qui recusandae sit,
 														tempora ullam unde velit!</div>
 												</div>
-											</article>
+											</article> -->
 
 											<!--comment-->
-											<article class="message-box">
+											<!-- <article class="message-box">
 												<div class="thumb-box">
 													<figure class="thumb"><img src="images/resource/review-thumb-2.jpg"
 															alt=""></figure>
@@ -129,10 +130,10 @@
 														facilis illo magnam numquam officia omnis qui recusandae sit,
 														tempora ullam unde velit!</div>
 												</div>
-											</article>
+											</article> -->
 
 											<!--comment-->
-											<article class="message-box">
+											<!-- <article class="message-box">
 												<div class="thumb-box">
 													<figure class="thumb"><img src="images/resource/review-thumb-3.jpg"
 															alt=""></figure>
@@ -146,7 +147,7 @@
 														facilis illo magnam numquam officia omnis qui recusandae sit,
 														tempora ullam unde velit!</div>
 												</div>
-											</article>
+											</article> -->
 										</div>
 									</div>
 
@@ -223,55 +224,24 @@
 									<div class="tab active-tab" id="pending-2">
 										<div class="comments-area">
 											<!--comment-->
-											<article class="message-box">
-												<div class="thumb-box">
-													<figure class="thumb"><img src="images/resource/review-thumb-1.jpg"
-															alt=""></figure>
-													<a href="#" class="reply-btn">Reply Now</a>
-												</div>
-												<div class="content-box">
-													<div class="name">Monija Moro</div>
-													<span class="date"><i class="la la-calendar"></i> 8:42 PM
-														1/28/2017</span>
-													<div class="text">Accusantium aut, consequatur, culpa dolorum est
-														facilis illo magnam numquam officia omnis qui recusandae sit,
-														tempora ullam unde velit!</div>
-												</div>
-											</article>
 
-											<!--comment-->
+											{% for comment in propertycomments %}
 											<article class="message-box">
 												<div class="thumb-box">
-													<figure class="thumb"><img src="images/resource/review-thumb-2.jpg"
+													<figure class="thumb"><img src="{% static 'assets/images/resource/default_user.png' %}"
 															alt=""></figure>
 													<a href="#" class="reply-btn">Reply Now</a>
 												</div>
+												
 												<div class="content-box">
-													<div class="name">Mibano Rests</div>
+													<div class="name">{{comment.name}}</div>
 													<span class="date"><i class="la la-calendar"></i> 8:42 PM
 														1/28/2017</span>
-													<div class="text">Accusantium aut, consequatur, culpa dolorum est
-														facilis illo magnam numquam officia omnis qui recusandae sit,
-														tempora ullam unde velit!</div>
+													<div class="text">{{comment.body}}</div>
 												</div>
 											</article>
-
-											<!--comment-->
-											<article class="message-box">
-												<div class="thumb-box">
-													<figure class="thumb"><img src="images/resource/review-thumb-3.jpg"
-															alt=""></figure>
-													<a href="#" class="reply-btn">Reply Now</a>
-												</div>
-												<div class="content-box">
-													<div class="name">Cojari Barna</div>
-													<span class="date"><i class="la la-calendar"></i> 8:42 PM
-														1/28/2017</span>
-													<div class="text">Accusantium aut, consequatur, culpa dolorum est
-														facilis illo magnam numquam officia omnis qui recusandae sit,
-														tempora ullam unde velit!</div>
-												</div>
-											</article>
+											{% endfor %}
+											
 										</div>
 									</div>
 
@@ -322,7 +292,7 @@
 												<div class="content-box">
 													<div class="name">Cojari Barna</div>
 													<span class="date"><i class="la la-calendar"></i> 8:42 PM
-														1/28/2017</span>
+														1/28/201700</span>
 													<div class="text">Accusantium aut, consequatur, culpa dolorum est
 														facilis illo magnam numquam officia omnis qui recusandae sit,
 														tempora ullam unde velit!</div>
