@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from base.models import Property, Agent, Location, Propertycategory, Blog, Comment, Profile, User,PropertyComment
+# ,MessageAgent
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 
@@ -120,5 +121,6 @@ def myProfile(request):
 
 @login_required(login_url='login')
 def messages(request):
-    context = {}
+    comments = MessageAgent.objects.filter(agent=request.user)
+    context = {'comments':comments}
     return render(request, 'adminSection/messages.html', context)

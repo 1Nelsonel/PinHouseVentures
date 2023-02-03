@@ -20,10 +20,11 @@ class PropertyCommentForm(ModelForm):
         fields = ['name','email','rating','body']
 
 class MessageAgentForm(ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your email'}))
    
 
     class Meta:
-        model = PropertyComment
-        fields = ['name','email','body']
+        model = MessageAgent
+        fields = ['full_name','email','phone_number','body']

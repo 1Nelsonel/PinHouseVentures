@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User,PropertyComment
-from .forms import CommentForm,PropertyCommentForm
+from .models import Property, Agent, Location, Propertycategory, Blog, Comment, User,PropertyComment,MessageAgent
+from .forms import CommentForm,PropertyCommentForm ,MessageAgentForm
 
 # Create your views here.
 
@@ -38,9 +38,46 @@ def agent(request, pk):
     properties = Property.objects.filter(agent=agent)
     agents = User.objects.all()
     blogs = Blog.objects.all()
-    context = {'agent': agent, 'properties': properties,
+
+    
+    # message an agent
+    form = MessageAgentForm()
+
+    if request.method == 'POST':
+        form = MessageAgentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.agent = User
+            comment.save()
+            return redirect("agent", pk=agent.id)
+    else:
+        reviews = MessageAgentForm()
+
+    context = {'agent': agent, 'properties': properties,'reviews': reviews,
                'agents': agents, 'blogs': blogs}
     return render(request, 'base/agent.html', context)
+
+def agent(request, pk):
+    agent = User.objects.get(id=pk)
+    properties = Property.objects.filter(agent=agent)
+    agents = User.objects.all()
+    blogs = Blog.objects.all()
+
+    form = MessageAgentForm()
+
+    if request.method == 'POST':
+        form = MessageAgentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.agent = agent
+            comment.save()
+            return redirect("agent", pk=agent.id)
+
+    context = {'agent': agent, 'properties': properties, 'reviews': form,
+               'agents': agents, 'blogs': blogs}
+    return render(request, 'base/agent.html', context)
+
+
 
 
 def listings(request):

@@ -86,6 +86,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PinHouseVentures.wsgi.application'
 
+# to auto logout user after you close the browser, you will have to relogin
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

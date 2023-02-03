@@ -166,23 +166,16 @@
                 <div class="inner-column">
                     <!-- Appointment Form -->
                     <div class="appointment-form">
-                        <form method="post" action="http://expert-themes.com/html/willies/index.html">
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="row">
-                                <div class="col-lg-4 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="Name" required>
+                                {% for field in reviews %}
+                                <div class="col-lg-8 col-md-12 col-sm-12 form-group">
+                                    <label>{{field.label}}</label>
+                                    {{field}}
                                 </div>
+                                {% endfor %}                                
                                 
-                                <div class="col-lg-4 col-md-12 col-sm-12 form-group">
-                                    <input type="email" name="email" placeholder="Email" required>
-                                </div>
-
-                                <div class="col-lg-4 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="phone" placeholder="Phone" required>
-                                </div>
-                                
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <textarea name="message" placeholder="Massage"></textarea>
-                                </div>
                                 
                                 <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                     <button class="theme-btn btn-style-one" type="submit" name="submit-form">Submit Request</button>
