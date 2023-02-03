@@ -145,8 +145,6 @@ class PropertyComment(models.Model):
 
 class MessageAgent(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # property = models.ForeignKey(Property, on_delete=models.CASCADE, blank=True)
-    # agent = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100, null=True, blank=True)
     phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
     phone_number = models.CharField(validators = [phoneNumberRegex], max_length = 16, null=True, blank=True)     
@@ -159,7 +157,7 @@ class MessageAgent(models.Model):
         ordering = ['-updated_at', '-created_at']
 
     def __str__(self):
-        return self.name[0:50]
+        return self.full_name[0:50]
     
 
 class Blog(models.Model):

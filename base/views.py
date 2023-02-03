@@ -46,8 +46,7 @@ def agent(request, pk):
     if request.method == 'POST':
         form = MessageAgentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.agent = User
+            comment = form.save()
             comment.save()
             return redirect("agent", pk=agent.id)
     else:
@@ -57,25 +56,25 @@ def agent(request, pk):
                'agents': agents, 'blogs': blogs}
     return render(request, 'base/agent.html', context)
 
-def agent(request, pk):
-    agent = User.objects.get(id=pk)
-    properties = Property.objects.filter(agent=agent)
-    agents = User.objects.all()
-    blogs = Blog.objects.all()
+# def agent(request, pk):
+#     agent = User.objects.get(id=pk)
+#     properties = Property.objects.filter(agent=agent)
+#     agents = User.objects.all()
+#     blogs = Blog.objects.all()
 
-    form = MessageAgentForm()
+#     form = MessageAgentForm()
 
-    if request.method == 'POST':
-        form = MessageAgentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.agent = agent
-            comment.save()
-            return redirect("agent", pk=agent.id)
+#     if request.method == 'POST':
+#         form = MessageAgentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.agent = agent
+#             comment.save()
+#             return redirect("agent", pk=agent.id)
 
-    context = {'agent': agent, 'properties': properties, 'reviews': form,
-               'agents': agents, 'blogs': blogs}
-    return render(request, 'base/agent.html', context)
+#     context = {'agent': agent, 'properties': properties, 'reviews': form,
+#                'agents': agents, 'blogs': blogs}
+#     return render(request, 'base/agent.html', context)
 
 
 
@@ -103,6 +102,9 @@ def listing(request, pk):
     categories = Propertycategory.objects.all()
     blogs = Blog.objects.all()
 
+
+    reviews = MessageAgentForm()
+
     # comments
     propertycomments = PropertyComment.objects.all()
 
@@ -117,7 +119,7 @@ def listing(request, pk):
     else:
         commentform = PropertyCommentForm()
 
-    context = {'property': property,'propertycomments':propertycomments,'commentform':commentform,
+    context = {'property': property,'propertycomments':propertycomments,'commentform':commentform,'reviews': reviews,
                'properties': properties, 'categories': categories, 'blogs': blogs}
     return render(request, 'base/listing.html', context)
 
