@@ -1,9 +1,9 @@
-# deploy workflow
+# This workflow deploys the website to an FTP server when changes are pushed to the main branch.
 on: 
     push:
       branches:
         - main
-name: 🚀 Deploy PinHouse website on push to main
+name: 🚀 Deploy website on push to main
 jobs:
   web-deploy:
     name: 🎉 Deploy
