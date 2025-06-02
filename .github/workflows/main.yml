@@ -3,7 +3,7 @@ on:
     push:
       branches:
         - master
-        
+
 name: 🚀 Deploy PinHouse website on push to main
 jobs:
   web-deploy:
@@ -15,7 +15,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: WWW.pinhouse.nelsoneltechgroup.com
+        server: www.nelsoneltechgroup.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         server-dir: /PinHouse/
