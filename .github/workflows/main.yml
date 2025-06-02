@@ -2,7 +2,8 @@
 on: 
     push:
       branches:
-        - main
+        - master
+        
 name: 🚀 Deploy PinHouse website on push to main
 jobs:
   web-deploy:
