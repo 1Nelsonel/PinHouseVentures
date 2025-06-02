@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
+import environ
 from django.contrib.messages import constants as messages
 
 # message
@@ -27,17 +27,23 @@ MESSAGE_TAGS = {
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o*^391^dszz$n*_q&eozrphw+)-=^)crz0uj9x!9y_#aye+8*i'
+SECRET_KEY = env("SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env("DEBUG")
+HTTP_PROTOCOL = env("HTTP_PROTOCOL")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -102,12 +108,18 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PinHouse_Ventures', 
-        'USER': 'postgres', 
-        'PASSWORD': '0101',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'ENGINE': 'dj_db_conn_pool.backends.postgresql', 
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'CONN_MAX_AGE': 60,
+        'POOL_OPTIONS': {
+            'POOL_SIZE': 20,
+            'MAX_OVERFLOW': 10,
+            'RECYCLE': 300,
+        }
     }
 }
 
