@@ -17,4 +17,4 @@ jobs:
         server: nelsoneltechgroup.co.ke
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /BigFiveTechnologies/
+        server-dir: /PinHouse/
